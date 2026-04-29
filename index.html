@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NUVIA AI — Chatbots con IA para Clínicas</title>
+<meta name="description" content="Implementamos chatbots de IA para clínicas que atienden pacientes 24/7, agendan turnos automáticamente y reducen no-shows.">
+<meta property="og:title" content="NUVIA AI — Chatbots para Clínicas">
+<meta property="og:description" content="Tu clínica atendiendo pacientes 24/7 sin contratar más personal.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nuviamarketing.org/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '924335869993006');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=924335869993006&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+/* ── RESET & ROOT ─────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090E;
+  --bg2:#0C1018;
+  --bg3:#111820;
+  --bg4:#171F2C;
+  --bg5:#1C2535;
+  --border:rgba(255,255,255,0.055);
+  --border2:rgba(255,255,255,0.1);
+  --border3:rgba(255,255,255,0.16);
+  --text:#ECF0F8;
+  --text2:#8A97AB;
+  --text3:#4E5C70;
+  --accent:#00C8F5;
+  --accent2:#0098C8;
+  --ag:rgba(0,200,245,0.12);
+  --ag2:rgba(0,200,245,0.07);
+  --green:#00DFA0;
+  --gdim:rgba(0,223,160,0.11);
+  --amber:#F5A623;
+  --adim:rgba(245,166,35,0.11);
+  --red:#FF3D5E;
+  --rdim:rgba(255,61,94,0.11);
+  --purple:#8B6FE8;
+  --pdim:rgba(139,111,232,0.12);
+  --r:10px;
+  --rl:14px;
+  --tr:0.16s ease;
+  --shadow:0 4px 24px rgba(0,0,0,0.35);
+  --shadow-lg:0 8px 48px rgba(0,0,0,0.5);
+  --glow-accent:0 0 20px rgba(0,200,245,0.25);
+  --glow-green:0 0 16px rgba(0,223,160,0.25);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.2;font-optical-sizing:auto}
+h1{font-size:clamp(38px,5vw,72px);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(28px,3vw,44px);font-weight:800;letter-spacing:-.025em}
+h3{font-size:clamp(17px,1.5vw,21px);font-weight:700;letter-spacing:-.01em}
+p{font-size:clamp(16px,1.2vw,18px);line-height:1.72}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+button{cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+/* Better text rendering */
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+
+/* ── UTILITIES ────────────────────────────────────────────────── */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.container-sm{max-width:780px;margin:0 auto;padding:0 24px}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--ag);border:1px solid rgba(0,200,245,0.25);
+  color:var(--accent);font-size:13px;font-weight:600;
+  padding:6px 14px;border-radius:50px;
+  font-family:'DM Mono',monospace;letter-spacing:.03em;
+}
+.tag.amber{background:var(--adim);border-color:rgba(245,166,35,.3);color:var(--amber)}
+.tag.green{background:var(--gdim);border-color:rgba(0,223,160,.3);color:var(--green)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:var(--r);
+  font-size:15px;font-weight:600;transition:all var(--tr);
+  font-family:'DM Sans',sans-serif;
+}
+.btn-primary{
+  background:var(--accent);color:#07090E;
+}
+.btn-primary:hover{background:#19d8ff;box-shadow:0 0 24px rgba(0,200,245,0.4);transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;color:var(--text);
+  border:1px solid var(--border2);
+}
+.btn-ghost:hover{border-color:var(--border3);background:var(--bg3)}
+.btn-lg{padding:17px 36px;font-size:17px;border-radius:12px}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── NAVBAR ───────────────────────────────────────────────────── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .3s ease,border-color .3s ease,backdrop-filter .3s;
+  border-bottom:1px solid transparent;
+}
+#navbar.scrolled{
+  background:rgba(7,9,14,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom-color:var(--border);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:20px;
+}
+.nav-logo .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--accent)}50%{opacity:.5;box-shadow:0 0 16px var(--accent)}}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-cupos{
+  font-size:13px;color:var(--amber);
+  font-family:'DM Mono',monospace;
+  display:flex;align-items:center;gap:6px;
+}
+.nav-cupos::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);animation:pulse 1.5s infinite}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:100px 0 80px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,200,245,0.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;opacity:.04;
+  background-image:linear-gradient(var(--border3) 1px,transparent 1px),linear-gradient(90deg,var(--border3) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-inner{text-align:center;position:relative}
+.hero-badge{margin-bottom:28px}
+.hero-h1{
+  font-size:clamp(30px,3.8vw,52px);
+  font-weight:800;letter-spacing:-.02em;
+  margin-bottom:24px;
+  background:linear-gradient(160deg,#ECF0F8 55%,#5FD8F0 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(16px,2vw,20px);
+  color:var(--text2);max-width:600px;
+  margin:0 auto 40px;line-height:1.7;
+}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
+.hero-metrics{
+  display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+  padding:28px 40px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  max-width:680px;margin:0 auto;
+}
+.hero-metric{text-align:center}
+.hero-metric .val{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:36px;color:var(--accent);line-height:1;
+}
+.hero-metric .lbl{font-size:14px;color:var(--text2);margin-top:6px}
+
+/* ── SOCIAL PROOF ─────────────────────────────────────────────── */
+#proof{
+  padding:64px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--bg2);
+}
+.proof-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:32px;align-items:center;
+}
+.proof-stat{text-align:center}
+.proof-stat .num{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:48px;
+  background:linear-gradient(135deg,var(--accent),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.proof-stat .unit{font-family:'DM Mono',monospace;font-size:14px;color:var(--text2);margin-top:6px;letter-spacing:.02em}
+.proof-divider{width:1px;height:60px;background:var(--border2);margin:0 auto}
+@media(max-width:640px){.proof-divider{display:none}}
+
+/* ── SECTION BASE ─────────────────────────────────────────────── */
+.section{padding:100px 0}
+.section-label{
+  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;
+  color:var(--accent);text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{
+  content:'';width:20px;height:2px;background:var(--accent);border-radius:2px;flex-shrink:0;
+}
+.section-h2{
+  font-size:clamp(28px,3.5vw,46px);font-weight:800;
+  letter-spacing:-.025em;margin-bottom:16px;line-height:1.22;
+}
+.section-sub{font-size:clamp(16px,1.3vw,18px);color:var(--text2);max-width:560px;line-height:1.8;font-weight:400}
+
+/* ── PROBLEMA ─────────────────────────────────────────────────── */
+#problema{background:var(--bg)}
+.pain-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:16px;margin-top:48px;
+}
+.pain-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--rl);padding:24px;
+  display:flex;gap:16px;align-items:flex-start;
+  transition:border-color var(--tr),transform var(--tr);
+}
+.pain-card:hover{border-color:rgba(255,61,94,.3);transform:translateY(-2px)}
+.pain-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--rdim);border:1px solid rgba(255,61,94,.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:18px;
+}
+.pain-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.pain-card p{font-size:15px;color:var(--text2);line-height:1.6}
+
+/* ── SOLUCIÓN ─────────────────────────────────────────────────── */
+#solucion{background:var(--bg2)}
+.modules-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;margin-top:52px;
+}
+.module-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--rl);padding:32px;
+  position:relative;overflow:hidden;
+  transition:transform var(--tr),border-color var(--tr),box-shadow var(--tr);
+}
+.module-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.module-card.m1:hover{border-color:rgba(0,200,245,.3);box-shadow:0 8px 40px rgba(0,200,245,.1)}
+.module-card.m2:hover{border-color:rgba(0,223,160,.3);box-shadow:0 8px 40px rgba(0,223,160,.1)}
+.module-card.m3:hover{border-color:rgba(139,111,232,.3);box-shadow:0 8px 40px rgba(139,111,232,.1)}
+.module-num{
+  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;
+  color:var(--text3);margin-bottom:16px;
+}
+.module-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:20px;
+}
+.m1 .module-icon{background:var(--ag);border:1px solid rgba(0,200,245,.2)}
+.m2 .module-icon{background:var(--gdim);border:1px solid rgba(0,223,160,.2)}
+.m3 .module-icon{background:var(--pdim);border:1px solid rgba(139,111,232,.2)}
+.module-card h3{font-size:21px;font-weight:700;margin-bottom:10px}
+.module-card p{font-size:16px;color:var(--text2);line-height:1.65;margin-bottom:20px}
+.module-features{list-style:none;display:flex;flex-direction:column;gap:8px}
+.module-features li{
+  font-size:15px;color:var(--text2);
+  display:flex;align-items:center;gap:8px;
+}
+.module-features li::before{
+  content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;
+}
+.m1 .module-features li::before{background:var(--accent)}
+.m2 .module-features li::before{background:var(--green)}
+.m3 .module-features li::before{background:var(--purple)}
+.module-glow{
+  position:absolute;top:-40px;right:-40px;
+  width:120px;height:120px;border-radius:50%;
+  filter:blur(40px);opacity:.15;pointer-events:none;
+}
+.m1 .module-glow{background:var(--accent)}
+.m2 .module-glow{background:var(--green)}
+.m3 .module-glow{background:var(--purple)}
+
+/* ── VIDEO ────────────────────────────────────────────────────── */
+#video{background:var(--bg);padding:100px 0}
+.video-wrap{
+  max-width:800px;margin:48px auto 0;
+  border-radius:16px;overflow:hidden;
+  border:1px solid var(--border2);
+  aspect-ratio:16/9;
+  position:relative;background:var(--bg3);
+  cursor:pointer;
+}
+.video-thumb{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at center,rgba(0,200,245,0.06) 0%,var(--bg3) 70%);
+}
+.video-play{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--accent);color:#07090E;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  box-shadow:0 0 0 12px rgba(0,200,245,.15);
+  transition:transform .2s,box-shadow .2s;
+}
+.video-wrap:hover .video-play{
+  transform:scale(1.1);
+  box-shadow:0 0 0 16px rgba(0,200,245,.2);
+}
+.video-label{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  background:rgba(7,9,14,.8);backdrop-filter:blur(8px);
+  padding:8px 18px;border-radius:50px;border:1px solid var(--border2);
+  font-size:13px;color:var(--text2);white-space:nowrap;
+}
+.video-iframe{position:absolute;inset:0;width:100%;height:100%;display:none}
+
+/* ── PROCESO ──────────────────────────────────────────────────── */
+#proceso{background:var(--bg2)}
+.steps-track{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-top:56px;position:relative;
+}
+.steps-track::before{
+  content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;
+  background:var(--border2);z-index:0;
+}
+.step{
+  text-align:center;position:relative;z-index:1;padding:0 12px;
+}
+.step-circle{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--bg3);border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;font-size:20px;
+  transition:border-color .4s,box-shadow .4s,background .4s;
+  position:relative;z-index:2;
+}
+.step.active .step-circle{
+  border-color:var(--accent);
+  box-shadow:0 0 0 6px rgba(0,200,245,.15);
+  background:var(--ag);
+}
+.step-num{
+  font-family:'DM Mono',monospace;font-size:12px;
+  color:var(--text2);margin-bottom:8px;letter-spacing:.06em;
+}
+.step h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.step p{font-size:14px;color:var(--text2);line-height:1.6}
+@media(max-width:640px){
+  .steps-track{grid-template-columns:1fr 1fr;gap:32px}
+  .steps-track::before{display:none}
+}
+
+/* ── CALIFICA ─────────────────────────────────────────────────── */
+#califica{background:var(--bg)}
+.califica-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;margin-top:48px;
+}
+.califica-col{
+  background:var(--bg2);border-radius:var(--rl);
+  padding:32px;border:1px solid var(--border);
+}
+.califica-col.yes{border-top:3px solid var(--green)}
+.califica-col.no{border-top:3px solid var(--red)}
+.califica-header{
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;font-size:17px;margin-bottom:20px;
+}
+.califica-header .ico{font-size:20px}
+.califica-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.califica-list li{
+  font-size:15px;color:var(--text2);
+  display:flex;align-items:flex-start;gap:10px;line-height:1.55;
+}
+.califica-list.yes li::before{
+  content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px;
+}
+.califica-list.no li::before{
+  content:'✗';color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px;
+}
+@media(max-width:640px){.califica-grid{grid-template-columns:1fr}}
+
+/* ── TESTIMONIOS ──────────────────────────────────────────────── */
+#testimonios{background:var(--bg2)}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:20px;margin-top:52px;
+}
+.testi-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--rl);padding:28px;
+  position:relative;overflow:hidden;
+  transition:transform var(--tr),border-color var(--tr);
+}
+.testi-card:hover{transform:translateY(-3px);border-color:var(--border2)}
+.testi-stars{color:var(--amber);font-size:15px;letter-spacing:2px;margin-bottom:16px}
+.testi-quote{
+  font-size:clamp(15px,1.2vw,17px);line-height:1.78;color:var(--text);
+  margin-bottom:24px;font-style:italic;font-weight:400;
+}
+.testi-result{
+  display:inline-block;
+  background:var(--gdim);border:1px solid rgba(0,223,160,.2);
+  color:var(--green);font-size:13px;font-weight:600;
+  padding:5px 12px;border-radius:50px;margin-bottom:20px;
+  font-family:'DM Mono',monospace;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--bg4);border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.testi-name{font-weight:600;font-size:15px}
+.testi-role{font-size:13px;color:var(--text2)}
+.testi-glow{
+  position:absolute;bottom:-30px;right:-30px;
+  width:100px;height:100px;border-radius:50%;
+  background:rgba(0,200,245,.06);filter:blur(30px);pointer-events:none;
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────── */
+#faq{background:var(--bg)}
+.faq-list{margin-top:48px;display:flex;flex-direction:column;gap:4px}
+.faq-item{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+}
+.faq-q{
+  width:100%;background:none;color:var(--text);
+  padding:22px 24px;display:flex;justify-content:space-between;
+  align-items:center;gap:16px;text-align:left;
+  font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;
+  cursor:pointer;transition:background var(--tr);
+}
+.faq-q:hover{background:var(--bg3)}
+.faq-q.open{color:var(--accent)}
+.faq-arrow{
+  width:24px;height:24px;border-radius:6px;
+  background:var(--bg4);display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;transition:transform .25s ease;color:var(--text2);
+}
+.faq-q.open .faq-arrow{transform:rotate(45deg);background:var(--ag);color:var(--accent)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s cubic-bezier(.4,0,.2,1);
+}
+.faq-a-inner{
+  padding:4px 24px 22px;font-size:15px;
+  color:var(--text2);line-height:1.78;border-top:1px solid var(--border);
+}
+
+/* ── CTA FINAL ────────────────────────────────────────────────── */
+#ctafinal{
+  padding:120px 0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,200,245,.07) 0%,var(--bg2) 70%);
+  text-align:center;border-top:1px solid var(--border);
+}
+.cta-badge{margin-bottom:20px}
+.cta-h2{
+  font-size:clamp(30px,4.5vw,52px);font-weight:800;
+  letter-spacing:-.02em;margin-bottom:16px;
+}
+.cta-sub{font-size:clamp(17px,1.4vw,19px);color:var(--text2);margin-bottom:40px;line-height:1.75}
+.cta-urgency{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'DM Mono',monospace;font-size:13px;
+  color:var(--amber);margin-top:24px;
+}
+.cta-urgency::before{
+  content:'';width:8px;height:8px;border-radius:50%;
+  background:var(--amber);animation:pulse 1.5s infinite;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+footer{
+  padding:40px 0;
+  border-top:1px solid var(--border);
+  background:var(--bg);
+}
+.footer-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:17px;display:flex;align-items:center;gap:8px;
+}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:14px;color:var(--text3);transition:color var(--tr)}
+.footer-links a:hover{color:var(--text2)}
+.footer-copy{font-size:13px;color:var(--text3)}
+
+/* ── MODAL ────────────────────────────────────────────────────── */
+#modal-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(7,9,14,.85);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s ease;
+  padding:16px;
+}
+#modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:20px;width:100%;max-width:600px;
+  max-height:90vh;overflow:hidden;
+  transform:scale(.95) translateY(16px);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:var(--shadow-lg);
+  display:flex;flex-direction:column;
+}
+#modal-overlay.open .modal-box{transform:scale(1) translateY(0)}
+.modal-header{
+  padding:20px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.modal-title{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:18px;
+}
+.modal-close{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--text2);font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all var(--tr);
+}
+.modal-close:hover{background:var(--bg4);color:var(--text)}
+.modal-body{flex:1;overflow:auto}
+#booking-iframe{
+  width:100%;height:600px;border:none;display:block;
+  background:var(--bg3);
+}
+.modal-loading{
+  height:600px;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;color:var(--text2);font-size:14px;
+}
+.modal-spinner{
+  width:36px;height:36px;border-radius:50%;
+  border:3px solid var(--border2);border-top-color:var(--accent);
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── ANIMATIONS ───────────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner > *{animation:fadeUp .7s ease both}
+.hero-inner > *:nth-child(1){animation-delay:.1s}
+.hero-inner > *:nth-child(2){animation-delay:.2s}
+.hero-inner > *:nth-child(3){animation-delay:.3s}
+.hero-inner > *:nth-child(4){animation-delay:.4s}
+.hero-inner > *:nth-child(5){animation-delay:.5s}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media(max-width:768px){
+  .section{padding:72px 0}
+  #hero{padding:90px 0 60px}
+  .hero-metrics{gap:24px;padding:20px 24px}
+  .hero-metric .val{font-size:28px}
+  .steps-track{grid-template-columns:1fr 1fr;gap:28px}
+  .steps-track::before{display:none}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center}
+  .nav-cupos{display:none}
+}
+@media(max-width:480px){
+  .hero-actions{flex-direction:column;align-items:center}
+  .btn-lg{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="dot"></span>NUVIA AI
+  </div>
+  <div class="nav-right">
+    <span class="nav-cupos">5 clínicas disponibles</span>
+    <button class="btn btn-primary" onclick="openModal()">Ver demo gratis →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="tag amber">🏥 Especialistas en clínicas médicas y dentales</span>
+      </div>
+      <h1 class="hero-h1">Tu clínica atendiendo<br>pacientes a las 3 AM<br>sin contratar nadie</h1>
+      <p class="hero-sub">Implementamos chatbots de IA que agendan turnos, responden consultas y reducen no-shows automáticamente — integrado a WhatsApp, Instagram y tu web.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" onclick="openModal()">Ver demo gratis →</button>
+        <a href="#solucion" class="btn btn-ghost btn-lg">Cómo funciona ↓</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <div class="val" data-count="70" data-suffix="%">0%</div>
+          <div class="lbl">Menos no-shows</div>
+        </div>
+        <div class="hero-metric">
+          <div class="val" data-count="24" data-suffix="/7">0/7</div>
+          <div class="lbl">Atención sin parar</div>
+        </div>
+        <div class="hero-metric">
+          <div class="val" data-count="3" data-suffix=" días">0 días</div>
+          <div class="lbl">Para implementar</div>
+        </div>
+        <div class="hero-metric">
+          <div class="val" data-count="40" data-suffix="%">0%</div>
+          <div class="lbl">Más turnos agendados</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section id="proof">
+  <div class="container">
+    <div class="proof-grid">
+      <div class="proof-stat reveal">
+        <div class="num" data-count="35" data-suffix="+">0+</div>
+        <div class="unit">Clínicas con chatbot activo</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat reveal">
+        <div class="num" data-count="12000" data-suffix="+">0+</div>
+        <div class="unit">Turnos agendados por IA</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat reveal">
+        <div class="num" data-count="70" data-suffix="%">0%</div>
+        <div class="unit">Reducción de no-shows</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat reveal">
+        <div class="num" data-count="3" data-suffix=" días">0 días</div>
+        <div class="unit">Para tener el bot activo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section id="problema" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">El problema</div>
+      <h2 class="section-h2">Cada llamada sin respuesta es un paciente que se va a otra clínica</h2>
+      <p class="section-sub">Tu recepcionista no puede atender a las 11 PM. El chatbot sí.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-icon">📵</div>
+        <div>
+          <h3>Llamadas fuera del horario</h3>
+          <p>El 40% de los pacientes intenta contactar a su clínica fuera del horario de atención y no encuentra respuesta.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📅</div>
+        <div>
+          <h3>No-shows que vacían la agenda</h3>
+          <p>Sin recordatorios automáticos, entre el 20% y 30% de los turnos no se presentan — tiempo y dinero perdido.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">💬</div>
+        <div>
+          <h3>Recepcionistas saturadas</h3>
+          <p>El 80% de las consultas son siempre las mismas: horarios, precios, dirección. El chatbot las responde solo.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📲</div>
+        <div>
+          <h3>Consultas por Instagram y WhatsApp sin gestión</h3>
+          <p>Los pacientes escriben por todos lados y nadie les responde a tiempo. Eso cierra la puerta antes de abrirla.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📋</div>
+        <div>
+          <h3>Agenda difícil de gestionar</h3>
+          <p>Turnos mal coordinados, cancelaciones de último momento y doble reserva le cuestan tiempo y reputación a tu clínica.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section id="solucion" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Lo que hacemos</div>
+      <h2 class="section-h2">Un chatbot de IA entrenado específicamente para tu clínica</h2>
+      <p class="section-sub">No es un bot genérico. Lo entrenamos con la información de tu clínica, tus servicios, tu agenda y tu estilo de atención.</p>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card m1 reveal">
+        <div class="module-glow"></div>
+        <div class="module-num">FUNCIÓN 01</div>
+        <div class="module-icon">📅</div>
+        <h3>Agenda turnos automáticamente</h3>
+        <p>El paciente elige día, hora y profesional por WhatsApp o la web. El turno queda confirmado en tu sistema sin que nadie intervenga.</p>
+        <ul class="module-features">
+          <li>Integración con Google Calendar y Agenda</li>
+          <li>Confirmación instantánea por WhatsApp</li>
+          <li>Recordatorio automático 24hs antes</li>
+          <li>Cancelación y reprogramación sin llamadas</li>
+        </ul>
+      </div>
+      <div class="module-card m2 reveal">
+        <div class="module-glow"></div>
+        <div class="module-num">FUNCIÓN 02</div>
+        <div class="module-icon">💬</div>
+        <h3>Responde consultas al instante</h3>
+        <p>Precios, coberturas, dirección, preparación para estudios, horarios — el bot responde todo en segundos, cualquier día, a cualquier hora.</p>
+        <ul class="module-features">
+          <li>Entrenado con la info de tu clínica</li>
+          <li>Respuestas en WhatsApp, Instagram y web</li>
+          <li>Escala a humano cuando es necesario</li>
+          <li>Responde en menos de 5 segundos</li>
+        </ul>
+      </div>
+      <div class="module-card m3 reveal">
+        <div class="module-glow"></div>
+        <div class="module-num">FUNCIÓN 03</div>
+        <div class="module-icon">🔔</div>
+        <h3>Reduce no-shows con recordatorios</h3>
+        <p>El bot envía recordatorios automáticos antes de cada turno y permite confirmar o reprogramar con un solo mensaje, reduciendo ausencias hasta un 70%.</p>
+        <ul class="module-features">
+          <li>Recordatorio 48hs y 2hs antes del turno</li>
+          <li>Confirmación con un clic por WhatsApp</li>
+          <li>Liberación automática de turnos cancelados</li>
+          <li>Seguimiento post-consulta automático</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="container">
+    <div class="container-sm">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label" style="display:inline-block">Cómo funciona</div>
+        <h2 class="section-h2" style="margin-top:12px">Mirá cómo funciona en 4 minutos</h2>
+        <p class="section-sub" style="margin:0 auto">Una explicación rápida de cómo implementamos IA en tu negocio y qué resultados podés esperar.</p>
+      </div>
+      <div class="video-wrap reveal" id="video-container">
+        <div class="video-thumb" id="video-thumb">
+          <div class="video-play">▶</div>
+        </div>
+        <span class="video-label">▶ Ver demo — 4 min</span>
+        <iframe id="booking-video" class="video-iframe" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label" style="display:inline-flex;justify-content:center">Implementación</div>
+      <h2 class="section-h2" style="margin-top:12px">Tu chatbot activo en 3 días</h2>
+      <p class="section-sub" style="margin:12px auto 0">Sin tecnicismos, sin complicaciones. Nos ocupamos de todo.</p>
+    </div>
+    <div class="steps-track" id="steps-track">
+      <div class="step reveal">
+        <div class="step-circle">📋</div>
+        <div class="step-num">DÍA 01</div>
+        <h3>Entendemos tu clínica</h3>
+        <p>Llamada de 30 min donde nos contás cómo trabajás, qué servicios ofrecés y cómo querés que el bot atienda.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">⚙️</div>
+        <div class="step-num">DÍA 02</div>
+        <h3>Configuramos el bot</h3>
+        <p>Entrenamos el chatbot con la información de tu clínica y lo conectamos a WhatsApp, Instagram o tu web.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">✅</div>
+        <div class="step-num">DÍA 03</div>
+        <h3>Lo revisamos juntos</h3>
+        <p>Te mostramos el bot en funcionamiento, ajustamos lo que haga falta y queda listo para recibir pacientes.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">🚀</div>
+        <div class="step-num">SIEMPRE</div>
+        <h3>Soporte incluido</h3>
+        <p>Si algo cambia en tu clínica — nuevos servicios, nuevos precios — actualizamos el bot sin costo adicional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALIFICA -->
+<section id="califica" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">¿Es para tu clínica?</div>
+      <h2 class="section-h2">Funciona para cualquier tipo de clínica</h2>
+      <p class="section-sub">Si tenés agenda de turnos y pacientes que consultan, el chatbot tiene sentido para vos.</p>
+    </div>
+    <div class="califica-grid">
+      <div class="califica-col yes reveal">
+        <div class="califica-header">
+          <span class="ico">✅</span>
+          <span style="color:var(--green)">Ideal para...</span>
+        </div>
+        <ul class="califica-list yes">
+          <li>Clínicas médicas y centros de salud</li>
+          <li>Consultorios odontológicos y dentales</li>
+          <li>Centros estéticos y de bienestar</li>
+          <li>Clínicas de oftalmología, dermatología, nutrición</li>
+          <li>Psicólogos, psiquiatras y terapeutas</li>
+          <li>Cualquier profesional de la salud con agenda</li>
+        </ul>
+      </div>
+      <div class="califica-col no reveal">
+        <div class="califica-header">
+          <span class="ico">🎯</span>
+          <span style="color:var(--accent)">Lo que incluye siempre...</span>
+        </div>
+        <ul class="califica-list yes">
+          <li>Bot entrenado con los datos de tu clínica</li>
+          <li>Agendamiento automático de turnos</li>
+          <li>Recordatorios para reducir no-shows</li>
+          <li>Soporte técnico y actualizaciones incluidas</li>
+          <li>Integración con WhatsApp Business</li>
+          <li>Panel para ver todas las conversaciones</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <button class="btn btn-primary btn-lg" onclick="openModal()">Quiero ver una demo →</button>
+      <p style="font-size:13px;color:var(--text3);margin-top:12px">Demo gratuita de 30 minutos. Sin compromiso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label" style="display:inline-block">Resultados reales</div>
+      <h2 class="section-h2" style="margin-top:12px">Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-glow"></div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Antes perdíamos turnos porque nadie atendía los mensajes de WhatsApp a la noche. Ahora el chatbot responde al instante y la gente agenda sola. En el primer mes llenamos la agenda completa."</p>
+        <div class="testi-result">+40% de turnos en el primer mes</div>
+        <div class="testi-author">
+          <div class="testi-avatar">👨‍⚕️</div>
+          <div>
+            <div class="testi-name">Dr. Martín Sosa</div>
+            <div class="testi-role">Director — Centro Médico Sosa</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-glow"></div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Nuestra recepcionista estaba desbordada con los mensajes. Con el chatbot, el 80% de las consultas simples las responde solo. Ella ahora puede enfocarse en los pacientes que están en el consultorio."</p>
+        <div class="testi-result">-75% carga administrativa</div>
+        <div class="testi-author">
+          <div class="testi-avatar">👩‍⚕️</div>
+          <div>
+            <div class="testi-name">Dra. Laura Ibáñez</div>
+            <div class="testi-role">Directora — Clínica Estética Ibáñez</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container container-sm">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label" style="display:inline-block">FAQ</div>
+      <h2 class="section-h2" style="margin-top:12px">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿En qué se diferencia de otros chatbots que hay en el mercado?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Los chatbots genéricos responden preguntas básicas con respuestas pre-cargadas. El nuestro usa inteligencia artificial entrenada con la información real de tu clínica: tus servicios, precios, profesionales, horarios y forma de trabajar. Además se integra con tu agenda real para agendar turnos de verdad, no solo recolectar datos.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto tarda en estar listo el chatbot?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">En 3 días hábiles desde que nos pasás la información de tu clínica. El día 1 hacemos la llamada de briefing, el día 2 configuramos y entrenamos el bot, y el día 3 te lo mostramos funcionando y lo ajustamos juntos. Si necesitás integraciones especiales puede tomar un poco más, pero siempre en menos de una semana.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto cuesta?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Tenemos planes accesibles para clínicas de todos los tamaños. En la demo te damos el detalle de precios según lo que necesites. Lo que podemos decir es que el chatbot se paga solo: si reducís aunque sea 2-3 no-shows por semana, ya cubrís el costo mensual del servicio.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa si no veo resultados?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Trabajamos con garantía de resultados. Definimos KPIs específicos antes de arrancar y si no los alcanzás en 90 días, seguimos trabajando sin costo adicional hasta que los cumplas. Esto nos obliga a ser selectivos con quién aceptamos como cliente y a comprometernos con proyectos donde tenemos alta certeza de éxito.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿En qué países y mercados trabajan?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Trabajamos con clínicas de Argentina, México, Colombia, Chile y España. Todo es 100% remoto — configuramos y entrenamos el bot sin que tengas que instalar nada ni estar presente. Solo necesitás una cuenta de WhatsApp Business.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo es el primer paso?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Agendás una demo gratuita de 30 minutos. Te mostramos el chatbot funcionando en vivo para una clínica similar a la tuya, te explicamos cómo quedaría en tu caso y te damos el precio. Sin presión, sin compromiso. Si te convence, arrancamos en 72 horas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="ctafinal">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="cta-badge">
+        <span class="tag green">🏥 Demo gratuita de 30 minutos</span>
+      </div>
+      <h2 class="cta-h2">Mirá el chatbot funcionando<br>en una clínica como la tuya</h2>
+      <p class="cta-sub">En 30 minutos te hacemos una demo en vivo y te decimos exactamente<br>cómo quedaría implementado en tu clínica.</p>
+      <button class="btn btn-primary btn-lg" onclick="openModal()">Ver demo gratis →</button>
+      <div class="cta-urgency">Quedan <strong id="cupos-counter" style="color:var(--amber);margin:0 4px">5</strong> demos disponibles esta semana</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block"></span>
+        NUVIA AI
+      </div>
+      <div class="footer-links">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Términos de uso</a>
+        <a href="#">Contacto</a>
+      </div>
+      <div class="footer-copy">© 2025 NUVIA AI. Todos los derechos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Agendar sesión de diagnóstico gratuita</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-loading" id="modal-loading">
+        <div class="modal-spinner"></div>
+        <span>Cargando calendario...</span>
+      </div>
+      <iframe
+        id="booking-iframe"
+        src=""
+        style="display:none"
+        onload="onIframeLoad()"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ─────────────────────────────────────────────────────
+const BOOKING_URL = 'https://cal.com/nuvia-etittg/meta?embed=true';
+const VIDEO_URL   = '';  // Pegar aquí URL del video (YouTube embed URL)
+const CUPOS       = 5;
+
+// ── PIXEL HELPER ───────────────────────────────────────────────
+function pixel(event, data) {
+  if (typeof fbq === 'function') {
+    fbq('track', event, data || {});
+  }
+}
+
+// ── MODAL ──────────────────────────────────────────────────────
+let modalOpened = false;
+let scheduleTracked = false;
+
+function openModal() {
+  const overlay = document.getElementById('modal-overlay');
+  const iframe  = document.getElementById('booking-iframe');
+  const loading = document.getElementById('modal-loading');
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (!modalOpened) {
+    modalOpened = true;
+    iframe.src = BOOKING_URL;
+    pixel('Lead', { content_name: 'Sesion Diagnostico IA' });
+  }
+
+  loading.style.display = 'flex';
+  iframe.style.display  = 'none';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+function onIframeLoad() {
+  document.getElementById('modal-loading').style.display = 'none';
+  document.getElementById('booking-iframe').style.display = 'block';
+}
+
+// Escape key closes modal
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Listen for booking confirmation from Cal.com iframe postMessage
+window.addEventListener('message', function(e) {
+  if (scheduleTracked) return;
+  const d = e.data;
+  // Cal.com fires { type: 'bookingSuccessful' } on confirmed booking
+  if (
+    (typeof d === 'object' && d !== null && (
+      d.type === 'bookingSuccessful' ||
+      d.type === 'rescheduleBookingSuccessful'
+    )) ||
+    (typeof d === 'string' && d.includes('bookingSuccessful'))
+  ) {
+    scheduleTracked = true;
+    pixel('Schedule', { content_name: 'Sesion Diagnostico IA', value: 0, currency: 'USD' });
+  }
+});
+
+// ── NAVBAR SCROLL ──────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── COUNTER ANIMATION ──────────────────────────────────────────
+function animateCount(el) {
+  const target  = parseFloat(el.dataset.count);
+  const suffix  = el.dataset.suffix || '';
+  const dec     = parseInt(el.dataset.dec || '0');
+  const dur     = 1400;
+  const start   = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - start) / dur, 1);
+    const ease     = 1 - Math.pow(1 - progress, 3);
+    const val      = target * ease;
+    el.textContent = (dec ? val.toFixed(dec) : Math.round(val)) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ── SCROLL REVEAL + COUNTERS ───────────────────────────────────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    el.classList.add('visible');
+
+    // Counters inside this element
+    el.querySelectorAll('[data-count]').forEach(c => animateCount(c));
+    if (el.hasAttribute('data-count')) animateCount(el);
+
+    io.unobserve(el);
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Hero metrics counter (fires on hero section load)
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.hero-metric .val[data-count]').forEach(el => animateCount(el));
+  }, 600);
+});
+
+// ── STEPS SCROLL HIGHLIGHT ─────────────────────────────────────
+const stepsIO = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const steps = document.querySelectorAll('.step');
+    steps.forEach((s, i) => {
+      setTimeout(() => s.classList.add('active'), i * 180);
+    });
+    stepsIO.unobserve(entry.target);
+  });
+}, { threshold: 0.3 });
+
+const stepsTrack = document.getElementById('steps-track');
+if (stepsTrack) stepsIO.observe(stepsTrack);
+
+// ── FAQ ACCORDION ──────────────────────────────────────────────
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.style.maxHeight = null;
+  });
+
+  // Open clicked if it wasn't open
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+// ── VIDEO ──────────────────────────────────────────────────────
+document.getElementById('video-container').addEventListener('click', function() {
+  if (!VIDEO_URL) return;
+  const thumb = document.getElementById('video-thumb');
+  const iframe = document.getElementById('booking-video');
+  const label  = this.querySelector('.video-label');
+  iframe.src = VIDEO_URL + '?autoplay=1';
+  thumb.style.display  = 'none';
+  iframe.style.display = 'block';
+  label.style.display  = 'none';
+  pixel('ViewContent', { content_name: 'Demo Video IA' });
+});
+</script>
+</body>
+</html>
