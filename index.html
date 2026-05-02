@@ -75,6 +75,8 @@ body{
   overflow-x:hidden;
   -webkit-text-size-adjust:100%;
   text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.2;font-optical-sizing:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 h1{font-size:clamp(38px,5vw,72px);font-weight:800;letter-spacing:-.03em}
@@ -84,8 +86,6 @@ p{font-size:clamp(16px,1.2vw,18px);line-height:1.72}
 a{color:inherit;text-decoration:none}
 img{max-width:100%}
 button{cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
-/* Better text rendering */
-body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 
 /* ── UTILITIES ────────────────────────────────────────────────── */
 .container{max-width:1100px;margin:0 auto;padding:0 24px}
@@ -431,56 +431,6 @@ footer{
 .footer-links a:hover{color:var(--text2)}
 .footer-copy{font-size:13px;color:var(--text3)}
 
-/* ── MODAL ────────────────────────────────────────────────────── */
-#modal-overlay{
-  position:fixed;inset:0;z-index:1000;
-  background:rgba(7,9,14,.85);backdrop-filter:blur(12px);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .25s ease;
-  padding:16px;
-}
-#modal-overlay.open{opacity:1;pointer-events:all}
-.modal-box{
-  background:var(--bg2);border:1px solid var(--border2);
-  border-radius:20px;width:100%;max-width:600px;
-  max-height:90vh;overflow:hidden;
-  transform:scale(.95) translateY(16px);
-  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
-  box-shadow:var(--shadow-lg);
-  display:flex;flex-direction:column;
-}
-#modal-overlay.open .modal-box{transform:scale(1) translateY(0)}
-.modal-header{
-  padding:20px 24px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.modal-title{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:18px;
-}
-.modal-close{
-  width:32px;height:32px;border-radius:8px;
-  background:var(--bg3);border:1px solid var(--border);
-  color:var(--text2);font-size:18px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all var(--tr);
-}
-.modal-close:hover{background:var(--bg4);color:var(--text)}
-.modal-body{flex:1;overflow:auto}
-#booking-iframe{
-  width:100%;height:600px;border:none;display:block;
-  background:var(--bg3);
-}
-.modal-loading{
-  height:600px;display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:16px;color:var(--text2);font-size:14px;
-}
-.modal-spinner{
-  width:36px;height:36px;border-radius:50%;
-  border:3px solid var(--border2);border-top-color:var(--accent);
-  animation:spin .7s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
 /* ── ANIMATIONS ───────────────────────────────────────────────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-inner > *{animation:fadeUp .7s ease both}
@@ -502,12 +452,6 @@ footer{
   .footer-links{flex-wrap:wrap;justify-content:center}
   .nav-cupos{display:none}
   .califica-grid, .testi-grid{grid-template-columns:1fr}
-  
-  /* Mobile text rendering improvements */
-  body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-  h1,h2,h3,h4,p,a,button,span{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-  
-  /* Ensure hero heading stays bright on mobile */
   .hero-h1{
     background:none;
     -webkit-background-clip:unset;
@@ -516,35 +460,14 @@ footer{
     color:#FFFFFF;
     text-shadow:0 2px 4px rgba(0,0,0,0.5);
   }
-  
-  /* Improve section headings on mobile */
-  .section-h2{
-    color:#FFFFFF;
-    text-shadow:0 1px 3px rgba(0,0,0,0.4);
-  }
-  
-  /* Better contrast for body text */
-  p, .section-sub{
-    color:#FFFFFF;
-  }
-  
-  /* Improve card text visibility */
-  .pain-card h3, .module-card h3, .step h3{
-    color:#FFFFFF;
-  }
+  .section-h2{color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,0.4)}
+  p, .section-sub{color:#FFFFFF}
+  .pain-card h3, .module-card h3, .step h3{color:#FFFFFF}
 }
 
 @media(max-width:480px){
   .hero-actions{flex-direction:column;align-items:center}
   .btn-lg{width:100%;justify-content:center}
-  
-  /* Extra mobile optimizations */
-  h1,h2,h3,h4{
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    text-rendering:geometricPrecision;
-  }
-  
   .hero-h1{
     background:none;
     -webkit-background-clip:unset;
@@ -565,7 +488,7 @@ footer{
   </div>
   <div class="nav-right">
     <span class="nav-cupos">5 clínicas disponibles</span>
-    <button class="btn btn-primary" onclick="openModal()">Ver demo gratis →</button>
+    <button class="btn btn-primary" onclick="openBooking()">Ver demo gratis →</button>
   </div>
 </nav>
 
@@ -581,7 +504,7 @@ footer{
       <h1 class="hero-h1">Tu clínica atendiendo<br>pacientes a las 3 AM<br>sin contratar nadie</h1>
       <p class="hero-sub">Implementamos chatbots de IA que agendan turnos, responden consultas y reducen no-shows automáticamente — integrado a WhatsApp, Instagram y tu web.</p>
       <div class="hero-actions">
-        <button class="btn btn-primary btn-lg" onclick="openModal()">Ver demo gratis →</button>
+        <button class="btn btn-primary btn-lg" onclick="openBooking()">Ver demo gratis →</button>
         <a href="#solucion" class="btn btn-ghost btn-lg">Cómo funciona ↓</a>
       </div>
       <div class="hero-metrics">
@@ -829,7 +752,7 @@ footer{
       </div>
     </div>
     <div style="text-align:center;margin-top:40px" class="reveal">
-      <button class="btn btn-primary btn-lg" onclick="openModal()">Quiero ver una demo →</button>
+      <button class="btn btn-primary btn-lg" onclick="openBooking()">Quiero ver una demo →</button>
       <p style="font-size:13px;color:var(--text3);margin-top:12px">Demo gratuita de 30 minutos. Sin compromiso.</p>
     </div>
   </div>
@@ -844,7 +767,6 @@ footer{
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
-        <div class="testi-glow"></div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-quote">"Antes perdíamos turnos porque nadie atendía los mensajes de WhatsApp a la noche. Ahora el chatbot responde al instante y la gente agenda sola. En el primer mes llenamos la agenda completa."</p>
         <div class="testi-result">+40% de turnos en el primer mes</div>
@@ -857,7 +779,6 @@ footer{
         </div>
       </div>
       <div class="testi-card reveal">
-        <div class="testi-glow"></div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-quote">"Nuestra recepcionista estaba desbordada con los mensajes. Con el chatbot, el 80% de las consultas simples las responde solo. Ella ahora puede enfocarse en los pacientes que están en el consultorio."</p>
         <div class="testi-result">-75% carga administrativa</div>
@@ -948,8 +869,8 @@ footer{
       </div>
       <h2 class="cta-h2">Mirá el chatbot funcionando<br>en una clínica como la tuya</h2>
       <p class="cta-sub">En 30 minutos te hacemos una demo en vivo y te decimos exactamente<br>cómo quedaría implementado en tu clínica.</p>
-      <button class="btn btn-primary btn-lg" onclick="openModal()">Ver demo gratis →</button>
-      <div class="cta-urgency">Quedan <strong id="cupos-counter" style="color:var(--amber);margin:0 4px">5</strong> demos disponibles esta semana</div>
+      <button class="btn btn-primary btn-lg" onclick="openBooking()">Ver demo gratis →</button>
+      <div class="cta-urgency">Quedan <strong style="color:var(--amber);margin:0 4px">5</strong> demos disponibles esta semana</div>
     </div>
   </div>
 </section>
@@ -972,95 +893,21 @@ footer{
   </div>
 </footer>
 
-<!-- BOOKING MODAL -->
-<div id="modal-overlay" onclick="handleOverlayClick(event)">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div class="modal-title">Agendar sesión de diagnóstico gratuita</div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-loading" id="modal-loading">
-        <div class="modal-spinner"></div>
-        <span>Cargando calendario...</span>
-      </div>
-      <iframe
-        id="booking-iframe"
-        src=""
-        style="display:none"
-        onload="onIframeLoad()"
-      ></iframe>
-    </div>
-  </div>
-</div>
-
 <script>
 // ── CONFIG ─────────────────────────────────────────────────────
-const BOOKING_URL = 'https://cal.com/nuvia-etittg/meta?embed=true';
+const BOOKING_URL = 'https://cal.com/nuvia-etittg/meta';
 const VIDEO_URL   = 'https://www.loom.com/embed/1819f719047d4d84b7358d322d149ec9';
-const CUPOS       = 5;
 
 // ── PIXEL HELPER ───────────────────────────────────────────────
 function pixel(event, data) {
-  if (typeof fbq === 'function') {
-    fbq('track', event, data || {});
-  }
+  if (typeof fbq === 'function') fbq('track', event, data || {});
 }
 
-// ── MODAL ──────────────────────────────────────────────────────
-let modalOpened = false;
-let scheduleTracked = false;
-
-function openModal() {
-  const overlay = document.getElementById('modal-overlay');
-  const iframe  = document.getElementById('booking-iframe');
-  const loading = document.getElementById('modal-loading');
-
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  if (!modalOpened) {
-    modalOpened = true;
-    iframe.src = BOOKING_URL;
-    pixel('Lead', { content_name: 'Sesion Diagnostico IA' });
-  }
-
-  loading.style.display = 'flex';
-  iframe.style.display  = 'none';
+// ── BOOKING — abre en nueva pestaña ───────────────────────────
+function openBooking() {
+  pixel('Lead', { content_name: 'Sesion Diagnostico IA' });
+  window.open(BOOKING_URL, '_blank');
 }
-
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-}
-
-function onIframeLoad() {
-  document.getElementById('modal-loading').style.display = 'none';
-  document.getElementById('booking-iframe').style.display = 'block';
-}
-
-// Escape key closes modal
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// Listen for booking confirmation from Cal.com iframe postMessage
-window.addEventListener('message', function(e) {
-  if (scheduleTracked) return;
-  const d = e.data;
-  if (
-    (typeof d === 'object' && d !== null && (
-      d.type === 'bookingSuccessful' ||
-      d.type === 'rescheduleBookingSuccessful'
-    )) ||
-    (typeof d === 'string' && d.includes('bookingSuccessful'))
-  ) {
-    scheduleTracked = true;
-    pixel('Schedule', { content_name: 'Sesion Diagnostico IA', value: 0, currency: 'USD' });
-  }
-});
 
 // ── NAVBAR SCROLL ──────────────────────────────────────────────
 const navbar = document.getElementById('navbar');
@@ -1070,12 +917,11 @@ window.addEventListener('scroll', () => {
 
 // ── COUNTER ANIMATION ──────────────────────────────────────────
 function animateCount(el) {
-  const target  = parseFloat(el.dataset.count);
-  const suffix  = el.dataset.suffix || '';
-  const dec     = parseInt(el.dataset.dec || '0');
-  const dur     = 1400;
-  const start   = performance.now();
-
+  const target = parseFloat(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const dec    = parseInt(el.dataset.dec || '0');
+  const dur    = 1400;
+  const start  = performance.now();
   function step(now) {
     const progress = Math.min((now - start) / dur, 1);
     const ease     = 1 - Math.pow(1 - progress, 3);
@@ -1110,8 +956,7 @@ window.addEventListener('load', () => {
 const stepsIO = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
-    const steps = document.querySelectorAll('.step');
-    steps.forEach((s, i) => {
+    document.querySelectorAll('.step').forEach((s, i) => {
       setTimeout(() => s.classList.add('active'), i * 180);
     });
     stepsIO.unobserve(entry.target);
@@ -1138,11 +983,11 @@ function toggleFaq(btn) {
 // ── VIDEO ──────────────────────────────────────────────────────
 document.getElementById('video-container').addEventListener('click', function() {
   if (!VIDEO_URL) return;
-  const thumb = document.getElementById('video-thumb');
+  const thumb  = document.getElementById('video-thumb');
   const iframe = document.getElementById('booking-video');
   const label  = this.querySelector('.video-label');
-  iframe.src = VIDEO_URL + '?autoplay=1';
-  thumb.style.display  = 'none';
+  iframe.src          = VIDEO_URL + '?autoplay=1';
+  thumb.style.display = 'none';
   iframe.style.display = 'block';
   label.style.display  = 'none';
   pixel('ViewContent', { content_name: 'Demo Video IA' });
