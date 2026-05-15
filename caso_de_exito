@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caso de Éxito — Clínica Dental Sonrisa Perfecta | Nuvia</title>
+  <meta name="description" content="Cómo una clínica dental en Monterrey aumentó su conversión un 66% en 60 días con automatización de WhatsApp por Nuvia." />
+  <meta property="og:title" content="Caso de Éxito — +66% de conversión en 60 días | Nuvia" />
+  <meta property="og:description" content="Sin contratar personal. Sin cambiar software. Solo automatizando el seguimiento de pacientes por WhatsApp." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:   #0f3460;
+      --dark:   #0a1628;
+      --teal:   #00d4aa;
+      --teal-light: #e6faf6;
+      --red-light: #fff4f4;
+      --red-border: #fde0e0;
+      --red-text: #c0392b;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --text: #1a1a2e;
+      --max: 1080px;
+      --radius: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15, 52, 96, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0 32px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 18px; font-weight: 800;
+      color: var(--teal); letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+
+    .nav-badge {
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+
+    .nav-cta {
+      background: var(--teal); color: var(--dark);
+      font-size: 13px; font-weight: 700;
+      padding: 8px 18px; border-radius: 8px;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(155deg, var(--dark) 0%, #0d2444 45%, #0f3460 100%);
+      padding: 120px 32px 80px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-blob {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,170,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-blob-1 { width: 600px; height: 600px; top: -200px; right: -100px; }
+    .hero-blob-2 { width: 400px; height: 400px; bottom: -150px; left: -100px; }
+
+    .hero-inner {
+      max-width: var(--max); margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,212,170,.12); border: 1px solid rgba(0,212,170,.25);
+      color: var(--teal); font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero-tag span { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 900; line-height: 1.1; letter-spacing: -1.5px;
+      color: #fff; max-width: 740px; margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+
+    .hero-sub {
+      font-size: 17px; color: rgba(255,255,255,.6);
+      max-width: 540px; line-height: 1.7; margin-bottom: 52px;
+    }
+
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 0;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      overflow: hidden; max-width: 600px;
+    }
+
+    .hero-stat {
+      flex: 1; min-width: 160px;
+      padding: 24px 28px;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .hero-stat:last-child { border-right: none; }
+
+    .hero-stat .num {
+      font-size: 38px; font-weight: 900; letter-spacing: -2px;
+      color: var(--teal); line-height: 1;
+    }
+    .hero-stat .lbl {
+      font-size: 12px; color: rgba(255,255,255,.45);
+      margin-top: 6px; text-transform: uppercase; letter-spacing: .5px;
+    }
+
+    .scroll-hint {
+      margin-top: 56px; display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,.3); font-size: 12px; letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .scroll-hint::before {
+      content: ''; display: block;
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.25));
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+
+    section { padding: 80px 0; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800; letter-spacing: -0.8px;
+      color: var(--navy); line-height: 1.2; margin-bottom: 16px;
+    }
+
+    .section-body {
+      font-size: 16px; color: var(--gray-600);
+      line-height: 1.8; max-width: 640px;
+    }
+
+    /* ── CLIENT ── */
+    .client-section { background: var(--gray-50); }
+
+    .client-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+      align-items: start; margin-top: 40px;
+    }
+
+    .client-info h3 {
+      font-size: 20px; font-weight: 700; color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .client-info .meta {
+      font-size: 13px; color: var(--gray-400); margin-bottom: 16px;
+    }
+    .client-info p { font-size: 15px; color: var(--gray-600); line-height: 1.75; }
+
+    .client-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .tag {
+      background: #fff; border: 1px solid var(--gray-200);
+      color: var(--gray-600); font-size: 12px; font-weight: 500;
+      padding: 5px 12px; border-radius: 100px;
+    }
+
+    .quote-card {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: var(--radius); padding: 28px 32px;
+      position: relative;
+    }
+    .quote-card::before {
+      content: '\201C';
+      position: absolute; top: 16px; left: 24px;
+      font-size: 72px; line-height: 1; font-family: Georgia, serif;
+      color: var(--teal); opacity: .25; pointer-events: none;
+    }
+    .quote-card p {
+      font-size: 15px; color: var(--gray-800); line-height: 1.75;
+      font-style: italic; padding-top: 24px;
+    }
+    .quote-card .author {
+      margin-top: 16px; font-size: 13px;
+      font-weight: 700; color: var(--navy);
+    }
+    .quote-card .role { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+
+    /* ── PROBLEM ── */
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+      margin-top: 40px;
+    }
+
+    .problem-card {
+      background: var(--red-light); border: 1px solid var(--red-border);
+      border-radius: var(--radius); padding: 24px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .problem-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,.07); }
+
+    .problem-card .icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 18px; margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .problem-card h4 { font-size: 14px; font-weight: 700; color: var(--red-text); margin-bottom: 6px; }
+    .problem-card p { font-size: 13.5px; color: var(--gray-600); line-height: 1.65; }
+
+    /* ── SOLUTION ── */
+    .solution-section { background: var(--dark); }
+    .solution-section .section-title { color: #fff; }
+    .solution-section .section-body { color: rgba(255,255,255,.55); }
+
+    .solution-steps { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+
+    .sol-step {
+      display: grid; grid-template-columns: 56px 1fr; gap: 24px;
+      align-items: flex-start; padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      opacity: 0; transform: translateX(-20px);
+      transition: opacity .5s, transform .5s;
+    }
+    .sol-step.visible { opacity: 1; transform: translateX(0); }
+    .sol-step:last-child { border-bottom: none; }
+
+    .sol-num {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(0,212,170,.12); border: 1px solid rgba(0,212,170,.2);
+      color: var(--teal); font-weight: 800; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sol-content h4 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .sol-content p { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7; }
+
+    /* ── RESULTS ── */
+    .results-section { background: var(--navy); }
+    .results-section .section-title { color: #fff; }
+    .results-section .section-body { color: rgba(255,255,255,.55); }
+
+    .results-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      margin-top: 48px;
+    }
+
+    .result-card {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius); padding: 32px 24px; text-align: center;
+      position: relative; overflow: hidden;
+      transition: transform .25s, background .25s;
+    }
+    .result-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.08); }
+    .result-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--teal);
+    }
+
+    .result-card .before-val {
+      font-size: 12px; color: rgba(255,255,255,.35);
+      text-transform: uppercase; letter-spacing: 1px;
+      text-decoration: line-through; margin-bottom: 10px;
+    }
+    .result-card .main-val {
+      font-size: 52px; font-weight: 900; letter-spacing: -3px;
+      color: var(--teal); line-height: 1;
+    }
+    .result-card .main-val-label {
+      font-size: 12px; color: rgba(255,255,255,.4);
+      text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;
+    }
+    .result-card .metric {
+      margin-top: 14px; font-size: 13px; color: rgba(255,255,255,.6);
+      font-weight: 500; line-height: 1.4;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline-section { background: var(--gray-50); }
+
+    .timeline { margin-top: 48px; position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 10px; top: 12px; bottom: 12px; width: 2px;
+      background: linear-gradient(to bottom, var(--teal), var(--navy));
+    }
+
+    .tl-item {
+      position: relative; margin-bottom: 36px;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .5s, transform .5s;
+    }
+    .tl-item.visible { opacity: 1; transform: translateY(0); }
+    .tl-item:last-child { margin-bottom: 0; }
+
+    .tl-dot {
+      position: absolute; left: -26px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--teal); border: 3px solid #fff;
+      box-shadow: 0 0 0 2px var(--teal);
+    }
+
+    .tl-week {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 4px;
+    }
+    .tl-item h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .tl-item p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-section {
+      background: linear-gradient(135deg, #0a1628 0%, var(--navy) 100%);
+      padding: 80px 0;
+    }
+
+    .testimonial-inner {
+      max-width: 720px; margin: 0 auto; text-align: center; padding: 0 32px;
+    }
+
+    .testimonial-inner .quote-icon {
+      font-size: 56px; line-height: 1; font-family: Georgia, serif;
+      color: var(--teal); opacity: .4; display: block; margin-bottom: 8px;
+    }
+
+    .testimonial-inner blockquote {
+      font-size: clamp(16px, 2.5vw, 20px); color: rgba(255,255,255,.85);
+      font-style: italic; line-height: 1.75; margin-bottom: 28px;
+    }
+
+    .testimonial-author { font-size: 14px; font-weight: 700; color: #fff; }
+    .testimonial-role { font-size: 13px; color: rgba(255,255,255,.4); margin-top: 3px; }
+
+    .stars { color: var(--teal); font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; }
+
+    /* ── CTA ── */
+    .cta-section { padding: 100px 0; background: #fff; }
+
+    .cta-inner {
+      max-width: 640px; margin: 0 auto; text-align: center; padding: 0 32px;
+    }
+    .cta-inner .section-label { display: block; text-align: center; }
+    .cta-inner h2 {
+      font-size: clamp(26px, 4vw, 40px); font-weight: 900; letter-spacing: -1.5px;
+      color: var(--navy); margin-bottom: 14px; line-height: 1.15;
+    }
+    .cta-inner h2 span { color: var(--teal); }
+    .cta-inner p { font-size: 16px; color: var(--gray-600); line-height: 1.7; margin-bottom: 36px; }
+
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--teal); color: var(--dark);
+      font-size: 16px; font-weight: 800; letter-spacing: -.3px;
+      padding: 16px 32px; border-radius: 12px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(0,212,170,.35);
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,212,170,.45); }
+    .cta-btn svg { flex-shrink: 0; }
+
+    .cta-note { font-size: 13px; color: var(--gray-400); margin-top: 16px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.4);
+      padding: 28px 32px; font-size: 13px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer .logo { font-size: 16px; font-weight: 800; color: var(--teal); }
+
+    /* ── FLOATING CTA ── */
+    .floating-cta {
+      position: fixed; bottom: 24px; right: 24px; z-index: 99;
+      background: var(--teal); color: var(--dark);
+      font-size: 13px; font-weight: 700;
+      padding: 12px 20px; border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,212,170,.4);
+      display: flex; align-items: center; gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .2s, box-shadow .2s;
+    }
+    .floating-cta.show { opacity: 1; pointer-events: auto; }
+    .floating-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,212,170,.5); }
+
+    /* ── ANIMATE ON SCROLL ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-up:nth-child(2) { transition-delay: .1s; }
+    .fade-up:nth-child(3) { transition-delay: .2s; }
+    .fade-up:nth-child(4) { transition-delay: .3s; }
+
+    /* ── COUNTER ── */
+    [data-count] { transition: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .client-grid { grid-template-columns: 1fr; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; }
+      .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .hero-stat:last-child { border-bottom: none; }
+      nav { padding: 0 20px; }
+      .nav-badge { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://admind.lat/">Nuvia</a>
+  <span class="nav-badge">Caso de Éxito</span>
+  <a class="nav-cta" href="https://cal.com/nuvia-etittg/meta">Agendar diagnóstico →</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span></span>Caso de Éxito · Sector Dental</div>
+    <h1>Cómo una clínica dental en Monterrey <em>aumentó su conversión un 66%</em> en 60 días</h1>
+    <p class="hero-sub">Sin contratar personal adicional. Sin cambiar su software de gestión. Solo automatizando el seguimiento de pacientes por WhatsApp.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num"><span data-count="66" data-suffix="%">0%</span></div>
+        <div class="lbl">Más conversión</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num"><span data-count="120">0</span></div>
+        <div class="lbl">Pacientes reactivados</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num"><span data-count="7" data-suffix=" días">0</span></div>
+        <div class="lbl">Para implementar</div>
+      </div>
+    </div>
+    <div class="scroll-hint">Continúa leyendo</div>
+  </div>
+</header>
+
+<!-- CLIENT -->
+<section class="client-section">
+  <div class="container">
+    <span class="section-label">El cliente</span>
+    <h2 class="section-title">Clínica Dental Sonrisa Perfecta</h2>
+    <p class="section-body">Una clínica consolidada en Monterrey con 12 años de historia, 3 consultorios y un equipo de 8 personas. Especialistas en ortodoncia, implantes y blanqueamiento dental.</p>
+
+    <div class="client-grid">
+      <div class="client-info fade-up">
+        <h3>El contexto</h3>
+        <p class="meta">Monterrey, Nuevo León · Sector Salud · 12 años en operación</p>
+        <p>La clínica tenía una cartera sólida de pacientes y una reputación construida con años de trabajo. El problema no era la calidad del servicio, sino todo lo que pasaba antes y después de la cita: consultas que se perdían, presupuestos que no se cerraban y pacientes que simplemente dejaban de volver.</p>
+        <div class="client-tags">
+          <span class="tag">Ortodoncia</span>
+          <span class="tag">Implantes</span>
+          <span class="tag">Blanqueamiento</span>
+          <span class="tag">3 consultorios</span>
+          <span class="tag">8 personas en equipo</span>
+        </div>
+      </div>
+      <div class="quote-card fade-up">
+        <p>"Teníamos buena atención y buenos tratamientos, pero sentíamos que estábamos dejando dinero sobre la mesa. Muchos pacientes pedían cotización y nunca volvían, y nadie en el equipo tenía tiempo de hacerles seguimiento."</p>
+        <div class="author">Dr. Roberto Garza</div>
+        <div class="role">Director Médico — Clínica Dental Sonrisa Perfecta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="container">
+    <span class="section-label">El problema</span>
+    <h2 class="section-title">Un embudo con fugas en cada etapa</h2>
+    <p class="section-body">Antes de trabajar con Nuvia, la clínica enfrentaba cuatro problemas concretos que limitaban su crecimiento sin que el equipo supiera exactamente cuánto dinero representaban.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card fade-up">
+        <div class="icon">📉</div>
+        <h4>Baja conversión de presupuestos</h4>
+        <p>Solo el 35% de los pacientes que pedían un presupuesto terminaban iniciando el tratamiento. El resto no recibía ningún seguimiento posterior.</p>
+      </div>
+      <div class="problem-card fade-up">
+        <div class="icon">🚫</div>
+        <h4>No-shows frecuentes</h4>
+        <p>Entre el 25 y el 30% de las citas programadas resultaban en ausencia, dejando consultorios vacíos y tiempo del doctor desperdiciado.</p>
+      </div>
+      <div class="problem-card fade-up">
+        <div class="icon">💤</div>
+        <h4>Pacientes inactivos sin contactar</h4>
+        <p>Más de 400 pacientes no habían vuelto en más de 12 meses. No existía ningún sistema para contactarlos ni reactivarlos.</p>
+      </div>
+      <div class="problem-card fade-up">
+        <div class="icon">⏱️</div>
+        <h4>Equipo saturado de tareas manuales</h4>
+        <p>La recepcionista dedicaba 2 horas diarias a confirmar citas por WhatsApp y llamar pacientes, sin poder atender bien a quien llegaba.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution-section">
+  <div class="container">
+    <span class="section-label">La solución</span>
+    <h2 class="section-title">Automatización de WhatsApp en 3 capas</h2>
+    <p class="section-body">Nuvia diseñó e implementó un sistema que actúa en los tres puntos críticos del embudo sin que el equipo cambie su forma de trabajar ni aprenda nuevas herramientas.</p>
+
+    <div class="solution-steps">
+      <div class="sol-step">
+        <div class="sol-num">1</div>
+        <div class="sol-content">
+          <h4>Seguimiento automático post-consulta</h4>
+          <p>Cada paciente que solicita un presupuesto recibe una secuencia de mensajes por WhatsApp durante los siguientes 7 días: recordatorio del presupuesto, respuesta a objeciones frecuentes y opciones de financiamiento. El sistema detecta si el paciente responde y escala al equipo solo cuando hay interés real.</p>
+        </div>
+      </div>
+      <div class="sol-step">
+        <div class="sol-num">2</div>
+        <div class="sol-content">
+          <h4>Recordatorios inteligentes de cita</h4>
+          <p>El sistema envía recordatorios automáticos 48 horas y 2 horas antes de cada cita, con un link para confirmar o reprogramar. Si el paciente no confirma, el equipo recibe una alerta para llamar. Eliminó casi por completo el trabajo manual de recepción.</p>
+        </div>
+      </div>
+      <div class="sol-step">
+        <div class="sol-num">3</div>
+        <div class="sol-content">
+          <h4>Campaña de reactivación de pacientes inactivos</h4>
+          <p>Se diseñó una secuencia de 3 mensajes dirigida a pacientes sin actividad en más de 6 meses, ofreciendo una revisión gratuita o descuento en limpieza. Los interesados fueron agendados automáticamente sin intervención del equipo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section">
+  <div class="container">
+    <span class="section-label">Los resultados</span>
+    <h2 class="section-title">60 días después de la implementación</h2>
+    <p class="section-body">Los tres indicadores clave de la clínica se movieron de forma sostenida en las primeras 8 semanas.</p>
+
+    <div class="results-grid">
+      <div class="result-card fade-up">
+        <div class="before-val">Antes: 35%</div>
+        <div class="main-val"><span data-count="58" data-suffix="%">0%</span></div>
+        <div class="main-val-label">Ahora</div>
+        <div class="metric">Tasa de conversión de presupuestos a tratamientos</div>
+      </div>
+      <div class="result-card fade-up">
+        <div class="before-val">Antes: 28%</div>
+        <div class="main-val"><span data-count="11" data-suffix="%">0%</span></div>
+        <div class="main-val-label">Ahora</div>
+        <div class="metric">Tasa de no-shows en citas programadas</div>
+      </div>
+      <div class="result-card fade-up">
+        <div class="before-val">Sin sistema previo</div>
+        <div class="main-val"><span data-count="120">0</span></div>
+        <div class="main-val-label">Pacientes</div>
+        <div class="metric">Pacientes inactivos reactivados en 60 días</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <span class="section-label">Implementación</span>
+    <h2 class="section-title">De cero a funcionando en 7 días</h2>
+    <p class="section-body">Uno de los aspectos más valorados por el cliente fue la velocidad. El sistema estaba operativo antes de que terminara la primera semana.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-week">Día 1 – 2</div>
+        <h4>Diagnóstico y mapeo de procesos</h4>
+        <p>Revisamos el flujo actual de pacientes, los puntos de fuga y los mensajes que ya usaba el equipo para entender qué automatizar primero y en qué orden.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-week">Día 3 – 5</div>
+        <h4>Configuración e integración</h4>
+        <p>Conectamos el sistema al WhatsApp de la clínica y su agenda de citas. Diseñamos los flujos de mensajes y los personalizamos con el tono, los tratamientos y el nombre de la clínica.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-week">Día 6 – 7</div>
+        <h4>Pruebas y lanzamiento</h4>
+        <p>El equipo probó el sistema internamente, ajustamos los mensajes y activamos los flujos en producción. Desde el día 7 el sistema operó de forma completamente autónoma.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-week">Semana 2 – 8</div>
+        <h4>Optimización continua</h4>
+        <p>Monitoreamos las tasas de respuesta semanalmente, ajustamos tiempos de envío y mensajes. El equipo humano solo intervino cuando un paciente expresó interés real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-inner">
+    <span class="stars">★★★★★</span>
+    <blockquote>
+      "Lo que más me sorprendió fue la velocidad. En menos de una semana el sistema ya estaba funcionando y en el primer mes notábamos que más pacientes cerraban sus tratamientos. Mi recepcionista dejó de perder horas confirmando citas y ahora da mejor atención a quien llega en persona. Lo que pensé que iba a ser complicado resultó ser lo más simple que hemos implementado en años."
+    </blockquote>
+    <div class="testimonial-author">Dr. Roberto Garza</div>
+    <div class="testimonial-role">Director Médico — Clínica Dental Sonrisa Perfecta, Monterrey</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <span class="section-label">¿Tu clínica tiene el mismo problema?</span>
+    <h2>Agenda un diagnóstico <span>gratuito de 15 minutos</span></h2>
+    <p>Analizamos juntos cuántos pacientes está perdiendo tu clínica por falta de seguimiento y te mostramos exactamente cómo funcionaría el sistema en tu caso.</p>
+    <a class="cta-btn" href="https://cal.com/nuvia-etittg/meta">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Agendar diagnóstico gratuito
+    </a>
+    <p class="cta-note">Sin compromiso · 15 minutos · Respuesta en menos de 24h</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="logo">Nuvia</span>
+  <span>Automatización con IA para empresas en crecimiento</span>
+  <span>© 2026 Nuvia</span>
+</footer>
+
+<!-- FLOATING CTA -->
+<a class="floating-cta" href="https://cal.com/nuvia-etittg/meta" id="floatingCta">
+  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+  Agendar diagnóstico
+</a>
+
+<script>
+  // Intersection Observer para fade-up y timeline items
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up, .sol-step, .tl-item').forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+    const ease = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(ease(progress) * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+  // Floating CTA aparece al hacer scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('floatingCta').classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+</script>
+</body>
+</html>
