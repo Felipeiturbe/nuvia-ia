@@ -3,823 +3,717 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ADMiND — AI Automation for Clinics</title>
-<meta name="description" content="ADMiND is an AI-powered automation platform for clinics. Patient communication, scheduling, calendar availability, confirmations, and reminders.">
-<meta property="og:title" content="ADMiND — AI Automation for Clinics">
-<meta property="og:description" content="ADMiND helps clinics automate patient communication, scheduling, and appointment management with AI.">
+<title>Nuvia Marketing | Sistema de Captación Inmobiliaria</title>
+<meta name="description" content="Sistema de marketing digital para agentes inmobiliarios. Captá de 3 a 9 propiedades en menos de 90 días sin depender de portales ni referidos.">
+<meta property="og:title" content="Nuvia Marketing | Funnel Inmobiliario">
+<meta property="og:description" content="Conocé cómo captar y vender propiedades con un sistema predecible de leads calificados directo en tu WhatsApp.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://nuviamarketing.org/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel: reemplazá META_PIXEL_ID en el script de abajo cuando tengas el ID -->
+<script id="meta-pixel-config">
+window.META_PIXEL_ID = "";
+window.META_PIXEL_EVENTS = { pageView: true, leadOnBooking: true };
+</script>
+<script>
+(function () {
+  var pixelId = window.META_PIXEL_ID;
+  if (!pixelId || pixelId === "YOUR_PIXEL_ID_HERE") return;
+  !function (f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+    n = f.fbq = function () {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = !0;
+    n.version = "2.0";
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = !0;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+  fbq("init", pixelId);
+  fbq("track", "PageView");
+})();
+</script>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --bg:#07090E;
-  --bg2:#0C1018;
-  --bg3:#111820;
-  --bg4:#151D2A;
-  --border:rgba(255,255,255,0.06);
-  --border2:rgba(255,255,255,0.12);
-  --text:#ECF0F8;
-  --text2:#8A97AB;
-  --text3:#4E5C70;
-  --accent:#00C8F5;
-  --accent2:#0099C4;
-  --green:#00DFA0;
-  --amber:#F5A623;
-  --red:#FF3D5E;
-  --purple:#7C3AED;
-  --shadow:0 8px 40px rgba(0,0,0,0.5);
-  --shadow-accent:0 0 40px rgba(0,200,245,0.2);
+  --bg:#07090E;--bg2:#0C1018;--bg3:#111820;--bg4:#171F2C;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
+  --text:#ECF0F8;--text2:#8A97AB;--text3:#4E5C70;
+  --accent:#00C8F5;--green:#00DFA0;--amber:#F5A623;--red:#FF3D5E;--purple:#8B6FE8;
+  --ag:rgba(0,200,245,0.12);--gdim:rgba(0,223,160,0.11);--adim:rgba(245,166,35,0.11);
+  --r:12px;--rl:16px;--tr:0.18s ease;
+  --shadow:0 8px 40px rgba(0,0,0,0.45);
 }
-
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:'Lexend',sans-serif;line-height:1.15}
-h1{font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.03em}
-h2{font-size:clamp(28px,3.5vw,52px);font-weight:800;letter-spacing:-.025em}
-h3{font-size:clamp(18px,2vw,22px);font-weight:700}
-p{color:var(--text2);line-height:1.8;font-size:16px}
-a{text-decoration:none;color:inherit}
-button{border:none;cursor:pointer;font-family:'Inter',sans-serif}
-img{max-width:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.15}
+h1{font-size:clamp(36px,5.5vw,68px);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(28px,3.5vw,46px);font-weight:800;letter-spacing:-.025em}
+h3{font-size:clamp(17px,1.8vw,21px);font-weight:700}
+p{color:var(--text2);font-size:clamp(15px,1.2vw,17px);line-height:1.75}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
 
-/* ── LAYOUT ── */
-.container{max-width:1160px;margin:0 auto;padding:0 28px}
-.container-sm{max-width:840px;margin:0 auto;padding:0 28px}
-.section{padding:110px 0}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+.container-sm{max-width:780px;margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
 .text-center{text-align:center}
 
-/* ── UTILS ── */
-.label{
+.tag{
   display:inline-flex;align-items:center;gap:8px;
-  color:var(--accent);font-size:11px;letter-spacing:.15em;
-  text-transform:uppercase;font-weight:700;margin-bottom:16px;
+  background:var(--adim);border:1px solid rgba(245,166,35,0.28);
+  color:var(--amber);font-size:12px;font-weight:700;
+  padding:7px 16px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;
 }
-.label::before{content:'';width:20px;height:2px;background:var(--accent);border-radius:2px}
+.tag.green{background:var(--gdim);border-color:rgba(0,223,160,.28);color:var(--green)}
+.tag.cyan{background:var(--ag);border-color:rgba(0,200,245,.28);color:var(--accent)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:var(--r);font-size:15px;font-weight:700;transition:all var(--tr);
+}
+.btn-primary{background:var(--accent);color:#050A12;box-shadow:0 4px 24px rgba(0,200,245,.28)}
+.btn-primary:hover{background:#1AD6FF;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,200,245,.4)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-lg{padding:17px 36px;font-size:16px;border-radius:14px}
 
 .gradient-text{
-  background:linear-gradient(135deg,#00C8F5 0%,#00DFA0 100%);
+  background:linear-gradient(135deg,var(--accent) 0%,var(--green) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 
-/* ── BUTTONS ── */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:15px 30px;border-radius:12px;font-weight:700;font-size:15px;
-  font-family:'Inter',sans-serif;transition:all .2s ease;cursor:pointer;
-  white-space:nowrap;
-}
-.btn-primary{
-  background:var(--accent);color:#050A12;
-  box-shadow:0 4px 20px rgba(0,200,245,0.3);
-}
-.btn-primary:hover{
-  background:#1AD6FF;transform:translateY(-2px);
-  box-shadow:0 8px 30px rgba(0,200,245,0.45);
-}
-.btn-ghost{
-  background:transparent;color:var(--text);
-  border:1px solid var(--border2);
-}
-.btn-ghost:hover{background:rgba(255,255,255,0.05);border-color:var(--accent);color:var(--accent)}
-.btn-lg{padding:18px 40px;font-size:16px;border-radius:14px}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,166,35,.5)}70%{box-shadow:0 0 0 8px rgba(245,166,35,0)}}
 
-/* ── BADGE ── */
-.badge{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:8px 18px;border-radius:999px;font-size:13px;font-weight:600;
-}
-.badge-amber{background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.25);color:var(--amber)}
-.badge-red{background:rgba(255,61,94,0.12);border:1px solid rgba(255,61,94,0.25);color:var(--red)}
-.badge-green{background:rgba(0,223,160,0.12);border:1px solid rgba(0,223,160,0.25);color:var(--green)}
-
-.pulse-dot{
-  width:8px;height:8px;border-radius:50%;flex-shrink:0;
-  animation:pulse 2s ease infinite;
-}
-.pulse-dot.amber{background:var(--amber);box-shadow:0 0 0 0 rgba(245,166,35,0.4)}
-.pulse-dot.red{background:var(--red);box-shadow:0 0 0 0 rgba(255,61,94,0.4)}
-.pulse-dot.green{background:var(--green)}
-
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(245,166,35,0.6)}
-  70%{box-shadow:0 0 0 8px rgba(245,166,35,0)}
-  100%{box-shadow:0 0 0 0 rgba(245,166,35,0)}
-}
-
-/* ── NAVBAR ── */
+/* NAV */
 #navbar{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 28px;height:72px;
-  background:rgba(7,9,14,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  transition:all .3s ease;
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:68px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(7,9,14,.82);backdrop-filter:blur(18px);border-bottom:1px solid transparent;
+  transition:all .3s;
 }
-#navbar.scrolled{background:rgba(7,9,14,0.98);box-shadow:0 4px 30px rgba(0,0,0,0.4)}
-
-.nav-logo{
-  display:flex;align-items:center;gap:10px;
-  font-family:'Lexend',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;
-}
-.nav-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--accent);box-shadow:0 0 14px var(--accent);
-  animation:glow 2.5s ease infinite alternate;
-}
-@keyframes glow{from{box-shadow:0 0 8px var(--accent)}to{box-shadow:0 0 20px var(--accent),0 0 40px rgba(0,200,245,0.3)}}
-
-.nav-center{display:flex;gap:2rem}
-.nav-center a{color:var(--text2);font-size:14px;font-weight:500;transition:color .2s;padding:4px 0}
+#navbar.scrolled{background:rgba(7,9,14,.96);border-bottom-color:var(--border);box-shadow:0 4px 30px rgba(0,0,0,.35)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:19px}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.nav-center{display:flex;gap:28px}
+.nav-center a{font-size:14px;font-weight:500;color:var(--text2);transition:color .2s}
 .nav-center a:hover{color:var(--text)}
-
 .nav-right{display:flex;align-items:center;gap:14px}
-.nav-cupos{
-  display:flex;align-items:center;gap:6px;
-  color:var(--amber);font-size:13px;font-weight:600;
-}
-
-/* Hamburger */
-.hamburger{
-  display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;
-}
+.nav-cupos{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--amber)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
 .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
 .mobile-menu{
-  display:none;position:fixed;top:72px;left:0;right:0;bottom:0;z-index:999;
-  background:rgba(7,9,14,0.98);backdrop-filter:blur(20px);
-  flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  display:none;position:fixed;inset:68px 0 0;z-index:99;
+  background:rgba(7,9,14,.98);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:28px;
   opacity:0;pointer-events:none;transition:opacity .3s;
 }
 .mobile-menu.open{opacity:1;pointer-events:all}
-.mobile-menu a,.mobile-menu button{font-size:1.3rem;font-weight:600;color:var(--text);width:240px;text-align:center}
+.mobile-menu a,.mobile-menu button{font-size:1.2rem;font-weight:600}
 
-/* ── HERO ── */
+/* HERO */
 #hero{
-  min-height:100vh;display:flex;align-items:center;
-  position:relative;overflow:hidden;padding:140px 0 100px;
+  min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  padding:120px 0 80px;text-align:center;
 }
-
 .hero-glow{
-  position:absolute;top:-20%;left:50%;transform:translateX(-50%);
+  position:absolute;top:-15%;left:50%;transform:translateX(-50%);
   width:900px;height:600px;pointer-events:none;
-  background:radial-gradient(ellipse,rgba(0,200,245,0.12) 0%,transparent 65%);
+  background:radial-gradient(ellipse,rgba(0,200,245,.1) 0%,transparent 65%);
 }
-.hero-glow2{
-  position:absolute;bottom:-10%;right:-10%;
-  width:500px;height:500px;pointer-events:none;
-  background:radial-gradient(ellipse,rgba(0,223,160,0.07) 0%,transparent 65%);
+.hero-inner{position:relative;z-index:1}
+.hero-h1{margin:24px 0 20px;max-width:900px;margin-left:auto;margin-right:auto}
+.hero-sub{max-width:680px;margin:0 auto 36px;font-size:clamp(16px,2vw,19px)}
+.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:48px}
+.hero-note{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:999px;
+  padding:10px 20px;font-size:14px;color:var(--text2);
 }
-
-.hero-inner{text-align:center;position:relative;z-index:1}
-
-.hero-h1{
-  margin:24px 0 20px;
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border-radius:var(--rl);overflow:hidden;
+  max-width:820px;margin:56px auto 0;
 }
-
-.hero-sub{
-  max-width:660px;margin:0 auto 40px;
-  font-size:clamp(16px,2vw,18px);color:var(--text2);line-height:1.75;
+.hero-stat{background:var(--bg2);padding:28px 20px;text-align:center}
+.hero-stat .num{
+  font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;
+  color:var(--accent);line-height:1;margin-bottom:6px;
 }
+.hero-stat .lbl{font-size:13px;color:var(--text2)}
 
-.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:60px}
-
-/* trust bar */
-.trust-bar{
-  display:flex;justify-content:center;flex-wrap:wrap;gap:40px;
-  padding-top:40px;border-top:1px solid var(--border);
-}
-.trust-item{display:flex;align-items:center;gap:10px}
-.trust-icon{font-size:20px}
-.trust-text{font-size:14px;color:var(--text2);font-weight:500}
-.trust-text strong{color:var(--text);display:block;font-size:16px;font-weight:700}
-
-/* ── SECCIÓN PROBLEMA ── */
+/* PROBLEM */
 #problema{background:var(--bg2)}
-
-.pain-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;margin-top:56px;
-}
-
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:48px}
 .pain-card{
-  display:flex;flex-direction:column;gap:16px;
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:20px;padding:32px;
-  transition:border-color .25s,transform .25s,box-shadow .25s;
-  position:relative;overflow:hidden;
+  background:var(--bg3);border:1px solid var(--border);border-radius:var(--rl);
+  padding:28px;display:flex;gap:16px;transition:all .25s;
 }
-.pain-card::before{
-  content:'';position:absolute;inset:0;border-radius:20px;
-  background:linear-gradient(135deg,rgba(255,61,94,0.05),transparent);
-  opacity:0;transition:opacity .3s;
-}
-.pain-card:hover{border-color:rgba(255,61,94,0.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
-.pain-card:hover::before{opacity:1}
-
-.pain-icon-wrap{
-  width:52px;height:52px;border-radius:14px;flex-shrink:0;
-  background:rgba(255,61,94,0.1);border:1px solid rgba(255,61,94,0.2);
-  display:flex;align-items:center;justify-content:center;font-size:24px;
-}
-.pain-card h3{font-size:18px;margin:0}
-.pain-card p{font-size:15px;margin:0}
-
-/* ── CÓMO FUNCIONA ── */
-.steps-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:0;margin-top:60px;position:relative;
-}
-.steps-grid::before{
-  content:'';position:absolute;top:36px;left:calc(16.6% + 26px);right:calc(16.6% + 26px);
-  height:1px;background:linear-gradient(90deg,transparent,var(--border2),var(--border2),transparent);
+.pain-card:hover{border-color:rgba(255,61,94,.25);transform:translateY(-3px)}
+.pain-icon{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  background:rgba(255,61,94,.1);border:1px solid rgba(255,61,94,.2);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
 }
 
-.step{
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;padding:0 24px;
+/* MODULES */
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:52px}
+.module-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);
+  padding:32px;position:relative;overflow:hidden;transition:all .25s;
 }
+.module-card:hover{transform:translateY(-4px);border-color:rgba(0,200,245,.25);box-shadow:var(--shadow)}
+.module-num{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--text3);margin-bottom:14px}
+.module-icon{
+  width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:18px;background:var(--ag);border:1px solid rgba(0,200,245,.2);
+}
+.module-card.m2 .module-icon{background:var(--gdim);border-color:rgba(0,223,160,.2)}
+.module-card.m3 .module-icon{background:rgba(139,111,232,.12);border-color:rgba(139,111,232,.2)}
+.module-card h3{margin-bottom:10px}
+.module-card p{font-size:15px;margin:0}
+
+/* STEPS */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:52px}
+.step{text-align:center;padding:0 12px}
 .step-num{
-  width:72px;height:72px;border-radius:50%;
-  background:var(--bg3);border:1px solid var(--border2);
+  width:64px;height:64px;border-radius:50%;margin:0 auto 18px;
+  background:var(--bg2);border:2px solid var(--border2);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Lexend',sans-serif;font-size:22px;font-weight:800;
-  color:var(--accent);margin-bottom:24px;position:relative;z-index:1;
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--accent);
   transition:all .3s;
 }
-.step:hover .step-num{background:var(--accent);color:#050A12;border-color:var(--accent);box-shadow:var(--shadow-accent)}
-.step h3{font-size:17px;margin-bottom:10px}
+.step:hover .step-num{background:var(--accent);color:#050A12;border-color:var(--accent)}
+.step h3{font-size:16px;margin-bottom:8px;color:var(--text)}
 .step p{font-size:14px}
 
-/* ── BENEFICIOS ── */
-#beneficios{background:var(--bg2)}
+/* TESTIMONIALS */
+#testimonios{background:var(--bg2)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:52px}
+.testi-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:var(--rl);
+  padding:28px;transition:all .25s;display:flex;flex-direction:column;
+}
+.testi-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.testi-badge{
+  display:inline-block;align-self:flex-start;
+  background:var(--gdim);border:1px solid rgba(0,223,160,.22);
+  color:var(--green);font-size:12px;font-weight:700;
+  padding:5px 12px;border-radius:999px;margin-bottom:16px;
+  font-family:'DM Mono',monospace;
+}
+.testi-stars{color:var(--amber);font-size:14px;letter-spacing:2px;margin-bottom:14px}
+.testi-quote{font-size:15px;line-height:1.78;color:var(--text);margin-bottom:20px;flex:1}
+.testi-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border)}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;background:var(--bg4);
+  border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--accent);
+}
+.testi-name{font-weight:700;font-size:15px;color:var(--text)}
+.testi-role{font-size:13px;color:var(--text2)}
 
-.benefits-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;margin-top:56px;
-}
+/* CALIFICA */
+.califica-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+.califica-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:28px}
+.califica-col.yes{border-top:3px solid var(--green)}
+.califica-col.no{border-top:3px solid var(--red)}
+.califica-header{font-weight:700;font-size:17px;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.califica-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.califica-list li{font-size:15px;color:var(--text2);display:flex;gap:10px;line-height:1.55}
+.califica-list.yes li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.califica-list.no li::before{content:'✗';color:var(--red);font-weight:700;flex-shrink:0}
 
-.benefit-card{
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:20px;padding:34px;
-  transition:all .25s;position:relative;overflow:hidden;
+/* FAQ */
+.faq-list{margin-top:48px;display:flex;flex-direction:column;gap:6px}
+.faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.faq-q{
+  width:100%;background:none;color:var(--text);padding:20px 22px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  text-align:left;font-size:16px;font-weight:600;cursor:pointer;
 }
-.benefit-card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--accent),var(--green));
-  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+.faq-q:hover{background:var(--bg3)}
+.faq-q.open{color:var(--accent)}
+.faq-arrow{
+  width:24px;height:24px;border-radius:6px;background:var(--bg4);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+  transition:transform .25s;color:var(--text2);
 }
-.benefit-card:hover{border-color:rgba(0,200,245,0.25);transform:translateY(-5px);box-shadow:0 16px 50px rgba(0,0,0,0.3)}
-.benefit-card:hover::after{transform:scaleX(1)}
+.faq-q.open .faq-arrow{transform:rotate(45deg);background:var(--ag);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a-inner{padding:4px 22px 20px;font-size:15px;color:var(--text2);line-height:1.75;border-top:1px solid var(--border)}
 
-.benefit-icon{
-  width:56px;height:56px;border-radius:16px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;margin-bottom:20px;
-}
-.bi-cyan{background:rgba(0,200,245,0.1);border:1px solid rgba(0,200,245,0.2)}
-.bi-green{background:rgba(0,223,160,0.1);border:1px solid rgba(0,223,160,0.2)}
-.bi-amber{background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2)}
-
-.benefit-card h3{font-size:19px;margin-bottom:10px}
-.benefit-card p{font-size:15px}
-
-/* ── STATS ── */
-#stats{
-  background:linear-gradient(135deg,rgba(0,200,245,0.08),rgba(0,223,160,0.05));
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-
-.stats-row{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:1px;background:var(--border);border-radius:20px;overflow:hidden;
-}
-.stat-item{
-  background:var(--bg);padding:44px 28px;text-align:center;
-}
-.stat-num{
-  font-family:'Lexend',sans-serif;font-size:clamp(38px,5vw,56px);
-  font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:8px;
-}
-.stat-num.cyan{color:var(--accent)}
-.stat-num.green{color:var(--green)}
-.stat-num.amber{color:var(--amber)}
-.stat-num.red{color:var(--red)}
-.stat-label{font-size:14px;color:var(--text2);font-weight:500}
-
-/* ── VIDEO / CASO ── */
-#caso{background:var(--bg2)}
-
-.video-wrap{
-  width:100%;border-radius:24px;overflow:hidden;
-  border:1px solid var(--border2);box-shadow:var(--shadow);
-  background:#000;margin:36px 0;
-}
-.video-aspect{position:relative;padding-bottom:56.25%;height:0}
-.video-aspect iframe{position:absolute;top:0;left:0;width:100%;height:100%}
-
-.caso-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-}
-.caso-stat{
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:16px;padding:24px;text-align:center;
-}
-.caso-stat .num{
-  font-family:'Lexend',sans-serif;font-size:36px;font-weight:800;
-  margin-bottom:4px;
-}
-.caso-stat .num.c{color:var(--accent)}
-.caso-stat .num.g{color:var(--green)}
-.caso-stat .num.a{color:var(--amber)}
-.caso-stat p{font-size:13px}
-
-/* ── CTA FINAL ── */
-#cta-final{
-  position:relative;overflow:hidden;
-}
-#cta-final::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(0,200,245,0.08),transparent 70%);
-  pointer-events:none;
-}
-
+/* CTA */
+#cta-mid,#cta-final{text-align:center}
 .cta-box{
-  background:var(--bg3);
-  border:1px solid rgba(0,200,245,0.2);
-  border-radius:28px;padding:80px 60px;text-align:center;
-  position:relative;overflow:hidden;
+  background:var(--bg2);border:1px solid rgba(0,200,245,.2);
+  border-radius:24px;padding:64px 40px;position:relative;overflow:hidden;
 }
 .cta-box::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(0,200,245,.08),transparent 70%);
+  pointer-events:none;
 }
+.cta-box h2{margin:16px 0 14px;position:relative}
+.cta-box p{max-width:560px;margin:0 auto 32px;position:relative}
 
-.cta-box h2{margin:16px 0 16px}
-.cta-box p{max-width:520px;margin:0 auto 40px;font-size:17px}
-
-.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-
-.cupos-row{
-  display:flex;align-items:center;justify-content:center;gap:12px;
-  margin-top:24px;
-}
-.cupos-spots{display:flex;gap:6px}
-.spot{
-  width:10px;height:10px;border-radius:50%;background:var(--red);
-  box-shadow:0 0 8px rgba(255,61,94,0.5);
-}
-.spot.taken{background:var(--text3);box-shadow:none}
-.cupos-text{font-size:13px;color:var(--text2)}
-.cupos-text strong{color:var(--red)}
-
-/* ── FOOTER ── */
-footer{
-  padding:60px 0 32px;
-  border-top:1px solid var(--border);
-}
-.footer-top{
-  display:grid;grid-template-columns:1.5fr 1fr 1fr;
-  gap:40px;margin-bottom:48px;
-}
-.footer-brand p{font-size:14px;margin-top:14px;max-width:260px}
-.footer-col h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:16px}
+/* FOOTER */
+footer{padding:56px 0 32px;border-top:1px solid var(--border)}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{font-size:14px;margin-top:14px;max-width:280px}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:14px}
 .footer-col a{display:block;font-size:14px;color:var(--text2);margin-bottom:10px;transition:color .2s}
 .footer-col a:hover{color:var(--accent)}
-
-.footer-bottom{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-  padding-top:28px;border-top:1px solid var(--border);
-}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:1px solid var(--border)}
 .footer-copy{font-size:13px;color:var(--text3)}
 
-/* ── WHATSAPP FLOAT ── */
 .wa-float{
-  position:fixed;bottom:28px;right:28px;z-index:999;
-  width:58px;height:58px;border-radius:50%;
-  background:#25D366;
+  position:fixed;bottom:24px;right:24px;z-index:99;
+  width:56px;height:56px;border-radius:50%;background:#25D366;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,0.4);
-  transition:transform .25s,box-shadow .25s;
-  cursor:pointer;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s;
 }
-.wa-float:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(37,211,102,0.5)}
+.wa-float:hover{transform:scale(1.08)}
 .wa-float svg{width:28px;height:28px;fill:#fff}
 
-/* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .65s ease,transform .65s ease}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.up{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
 
-/* ── RESPONSIVE ── */
+#modal-overlay{
+  position:fixed;inset:0;z-index:200;background:rgba(7,9,14,.88);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;
+  transition:opacity .25s;padding:16px;
+}
+#modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:var(--bg2);border:1px solid var(--border2);border-radius:20px;
+  width:100%;max-width:620px;max-height:90vh;overflow:hidden;
+  transform:scale(.95) translateY(12px);transition:transform .3s;box-shadow:var(--shadow);
+}
+#modal-overlay.open .modal-box{transform:scale(1) translateY(0)}
+.modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px}
+.modal-close{width:32px;height:32px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:18px;cursor:pointer}
+#booking-iframe{width:100%;height:620px;border:none;display:block;background:var(--bg3)}
+
 @media(max-width:900px){
-  .nav-center{display:none}
+  .nav-center,.nav-cupos{display:none}
   .hamburger{display:flex}
   .mobile-menu{display:flex}
-  .nav-cupos{display:none}
-  .footer-top{grid-template-columns:1fr 1fr}
-  .footer-brand{grid-column:1/-1}
-  .steps-grid::before{display:none}
-  .cta-box{padding:52px 28px}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .califica-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
 }
-
 @media(max-width:600px){
   .section{padding:72px 0}
   .hero-actions{flex-direction:column;align-items:center}
   .btn-lg{width:100%;max-width:320px}
-  .trust-bar{gap:24px}
-  .caso-stats{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .wa-float{bottom:20px;right:20px}
+  .steps-grid{grid-template-columns:1fr}
+  .cta-box{padding:48px 24px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav id="navbar">
-  <div class="nav-logo">
-    <div class="nav-dot"></div>
-    ADMiND
-  </div>
-
+  <div class="nav-logo"><span class="nav-dot"></span>Nuvia Marketing</div>
   <div class="nav-center">
     <a href="#problema">El problema</a>
-    <a href="#como-funciona">Cómo funciona</a>
-    <a href="#beneficios">Beneficios</a>
-    <a href="#caso">Caso de éxito</a>
+    <a href="#sistema">El sistema</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#faq">FAQ</a>
   </div>
-
   <div class="nav-right">
-    <div class="nav-cupos">
-      <div class="pulse-dot amber"></div>
-      Solo 3 cupos — Mayo
-    </div>
-    <button class="btn btn-primary" onclick="openBooking()">Agendar →</button>
+    <div class="nav-cupos"><span class="pulse-dot"></span>Solo 5 plazas este mes</div>
+    <button class="btn btn-primary" onclick="openBooking('nav')">Agendar reunión</button>
   </div>
-
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#problema" onclick="closeMobile()">El problema</a>
-  <a href="#como-funciona" onclick="closeMobile()">Cómo funciona</a>
-  <a href="#beneficios" onclick="closeMobile()">Beneficios</a>
-  <a href="#caso" onclick="closeMobile()">Caso de éxito</a>
-  <button class="btn btn-primary" onclick="openBooking();closeMobile()">Agendar reunión →</button>
+  <a href="#sistema" onclick="closeMobile()">El sistema</a>
+  <a href="#testimonios" onclick="closeMobile()">Testimonios</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <button class="btn btn-primary btn-lg" onclick="openBooking('mobile');closeMobile()">Agendar reunión</button>
 </div>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-
   <div class="container">
     <div class="hero-inner">
-      <div class="badge badge-amber reveal">
-        <div class="pulse-dot amber"></div>
-        ADMiND — AI automation for clinics
-      </div>
-
+      <div class="tag reveal"><span class="pulse-dot"></span>Exclusivo para agentes inmobiliarios</div>
       <h1 class="hero-h1 reveal">
-        <span class="gradient-text">ADMiND</span><br>
-        Tu clínica atendiendo<br>
-        pacientes <span class="gradient-text">a las 3 AM</span><br>
-        sin contratar nadie
+        Conocé cómo captar y vender<br>
+        <span class="gradient-text">de 3 a 9 propiedades</span><br>
+        en menos de 90 días
       </h1>
-
       <p class="hero-sub reveal">
-        Implementamos chatbots de IA que agendan turnos, responden consultas y reducen no-shows — automáticamente, sin esfuerzo de tu equipo.
+        Sin depender de ZonaProp, recomendaciones o llamadas en frío. Instalamos un sistema de marketing digital que te entrega propietarios y compradores calificados directo en tu WhatsApp.
       </p>
-
       <div class="hero-actions reveal">
-        <button class="btn btn-primary btn-lg" onclick="openBooking()">
-          Agendar Reunión Gratuita →
-        </button>
-        <a href="#caso" class="btn btn-ghost btn-lg">
-          Ver Caso de Éxito ↓
-        </a>
+        <button class="btn btn-primary btn-lg" onclick="openBooking('hero')">Agendar reunión →</button>
+        <a href="#testimonios" class="btn btn-ghost btn-lg">Ver testimonios ↓</a>
       </div>
-
-      <div class="trust-bar reveal">
-        <div class="trust-item">
-          <span class="trust-icon">⚡</span>
-          <div class="trust-text">
-            <strong>24/7</strong>
-            Disponibilidad
-          </div>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">📉</span>
-          <div class="trust-text">
-            <strong>−30%</strong>
-            Menos no-shows
-          </div>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">🚀</span>
-          <div class="trust-text">
-            <strong>+Turnos</strong>
-            Agenda llena
-          </div>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">💬</span>
-          <div class="trust-text">
-            <strong>Respuesta</strong>
-            Inmediata
-          </div>
-        </div>
+      <div class="hero-note reveal">
+        ⚡ En 72 horas te entregamos el sistema para conseguir propietarios y compradores potables directo en tu WhatsApp
+      </div>
+      <div class="hero-stats reveal">
+        <div class="hero-stat"><div class="num">+9</div><div class="lbl">Exclusivas en 90 días</div></div>
+        <div class="hero-stat"><div class="num">7</div><div class="lbl">Días al primer lead</div></div>
+        <div class="hero-stat"><div class="num">100%</div><div class="lbl">Enfoque en cierres</div></div>
+        <div class="hero-stat"><div class="num">5</div><div class="lbl">Plazas disponibles</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EL PROBLEMA -->
+<section id="cta-mid" class="section">
+  <div class="container-sm">
+    <div class="cta-box reveal">
+      <div class="tag cyan">Agenda tu videollamada</div>
+      <h2>La videollamada es para agentes que quieren ir al siguiente nivel</h2>
+      <p>Sesión de diagnóstico sin costo · 30 minutos · Sin compromiso. Analizamos tu situación y te mostramos exactamente cómo funcionaría el sistema para tu negocio.</p>
+      <button class="btn btn-primary btn-lg" onclick="openBooking('mid_cta')">Agendar reunión →</button>
+    </div>
+  </div>
+</section>
+
 <section id="problema" class="section">
   <div class="container">
     <div class="text-center reveal">
-      <div class="label">El problema</div>
-      <h2>Cada mensaje sin responder<br>es un paciente que se pierde</h2>
-      <p style="max-width:560px;margin:16px auto 0">
-        Mientras tu recepción duerme, los pacientes buscan turno. Si nadie responde, van a la competencia.
-      </p>
+      <div class="tag">El problema real</div>
+      <h2 style="margin-top:16px">¿Te suena familiar alguna de estas situaciones?</h2>
+      <p style="max-width:580px;margin:14px auto 0">Si respondés que sí a más de dos, tu negocio tiene un problema de sistema, no de esfuerzo.</p>
     </div>
-
     <div class="pain-grid">
-      <div class="pain-card reveal reveal-delay-1">
-        <div class="pain-icon-wrap">🌙</div>
-        <div>
-          <h3>Consultas fuera de horario</h3>
-          <p>Tus pacientes escriben un domingo a las 2 AM buscando turno. Sin respuesta, buscan otra clínica que sí atienda.</p>
-        </div>
+      <div class="pain-card reveal"><div class="pain-icon">⚡</div><div><h3>Dependés de referidos o portales</h3><p>No sabés cuándo va a llegar el próximo cliente ni cuánto vas a facturar el mes que viene.</p></div></div>
+      <div class="pain-card reveal"><div class="pain-icon">👀</div><div><h3>Consultas sin intención real</h3><p>Recibís personas que "solo están mirando" o que no tienen presupuesto para comprar o vender.</p></div></div>
+      <div class="pain-card reveal"><div class="pain-icon">💸</div><div><h3>Publicidad sin retorno</h3><p>Probaste anuncios en redes y gastaste dinero sin ver captaciones ni ventas concretas.</p></div></div>
+      <div class="pain-card reveal"><div class="pain-icon">📞</div><div><h3>Leads que se enfrían</h3><p>Perdés tiempo persiguiendo contactos que nunca responden o que desaparecen antes de cerrar.</p></div></div>
+      <div class="pain-card reveal"><div class="pain-icon">🔄</div><div><h3>Sin proceso repetible</h3><p>No tenés un sistema claro para llevar a un desconocido a una operación cerrada mes a mes.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sistema" class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="tag green">La solución</div>
+      <h2 style="margin-top:16px">No vendemos publicidad.<br><span class="gradient-text">Instalamos un sistema.</span></h2>
+      <p style="max-width:600px;margin:14px auto 0">Un sistema tiene tres componentes que trabajan juntos. Si falta uno, no funciona. Nosotros instalamos los tres.</p>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card m1 reveal">
+        <div class="module-num">MÓDULO 01</div>
+        <div class="module-icon">🎯</div>
+        <h3>Motor de Captación</h3>
+        <p>Campañas en Meta segmentadas por perfil de comprador y vendedor real, con creativos probados para tu zona. Solo llegan personas con intención de compra o venta.</p>
       </div>
-      <div class="pain-card reveal reveal-delay-2">
-        <div class="pain-icon-wrap">📅</div>
-        <div>
-          <h3>No-shows que vacían la agenda</h3>
-          <p>Los pacientes olvidan sus turnos. Cada ausencia es tiempo y dinero perdido que tu equipo no puede recuperar fácilmente.</p>
-        </div>
+      <div class="module-card m2 reveal">
+        <div class="module-num">MÓDULO 02</div>
+        <div class="module-icon">🔍</div>
+        <h3>Filtro de Calificación</h3>
+        <p>Antes de que el lead llegue a vos, pasa por un proceso automatizado que valida presupuesto, urgencia y perfil. Recibís solo contactos listos para avanzar.</p>
       </div>
-      <div class="pain-card reveal reveal-delay-3">
-        <div class="pain-icon-wrap">😩</div>
-        <div>
-          <h3>Recepción saturada</h3>
-          <p>Horarios, precios, obras sociales… tu equipo responde las mismas preguntas decenas de veces al día en lugar de enfocarse en lo importante.</p>
-        </div>
+      <div class="module-card m3 reveal">
+        <div class="module-num">MÓDULO 03</div>
+        <div class="module-icon">📊</div>
+        <h3>Centro de Seguimiento</h3>
+        <p>CRM configurado para tu negocio con seguimiento automático, recordatorios y flujos de nurturing. Ningún lead se enfría. Vos solo cerrás.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CÓMO FUNCIONA -->
-<section id="como-funciona" class="section">
+<section class="section" style="background:var(--bg2)">
   <div class="container">
     <div class="text-center reveal">
-      <div class="label">Proceso</div>
-      <h2>Implementación en <span class="gradient-text">3 pasos</span></h2>
-      <p style="max-width:500px;margin:16px auto 0">Sin complicaciones técnicas. Tu clínica operando con IA en días, no meses.</p>
+      <div class="tag">Cómo funciona</div>
+      <h2 style="margin-top:16px">De la primera llamada a tu sistema funcionando en 4 pasos</h2>
     </div>
-
     <div class="steps-grid">
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num">01</div>
-        <h3>Diagnóstico gratuito</h3>
-        <p>Analizamos tu flujo de atención, tus canales actuales y qué parte del proceso se puede automatizar primero.</p>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">02</div>
-        <h3>Configuración personalizada</h3>
-        <p>Entrenamos el chatbot con los datos de tu clínica: servicios, precios, horarios y preguntas frecuentes reales.</p>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">03</div>
-        <h3>Activación y seguimiento</h3>
-        <p>En menos de una semana tu IA está activa. Te entregamos reportes semanales de conversaciones y turnos agendados.</p>
-      </div>
+      <div class="step reveal"><div class="step-num">1</div><h3>Diagnóstico</h3><p>30 minutos para analizar tu situación, mercado y objetivo. Si podemos ayudarte, te lo decimos. Si no, también.</p></div>
+      <div class="step reveal"><div class="step-num">2</div><h3>Diseño</h3><p>Configuramos campañas, filtro de calificación y CRM con tu marca, zona y cliente ideal. Todo personalizado.</p></div>
+      <div class="step reveal"><div class="step-num">3</div><h3>Lanzamiento</h3><p>Lanzamos, monitoreamos diariamente y optimizamos los ángulos de venta hasta encontrar los que mejor convierten.</p></div>
+      <div class="step reveal"><div class="step-num">4</div><h3>Escala</h3><p>Con el sistema validado, aumentamos presupuesto y alcance. El sistema trabaja para vos. Vos atendés oportunidades.</p></div>
     </div>
   </div>
 </section>
 
-<!-- BENEFICIOS -->
-<section id="beneficios" class="section">
+<section class="section">
   <div class="container">
     <div class="text-center reveal">
-      <div class="label">Por qué elegirnos</div>
-      <h2>Todo lo que tu clínica necesita,<br>automatizado con IA</h2>
-      <p style="max-width:540px;margin:16px auto 0">ADMiND trabaja mientras tu equipo descansa. Sin errores, sin demoras, sin horas extra.</p>
+      <div class="tag">Criterios de selección</div>
+      <h2 style="margin-top:16px">Este sistema es para vos si…</h2>
     </div>
-
-    <div class="benefits-grid">
-      <div class="benefit-card reveal reveal-delay-1">
-        <div class="benefit-icon bi-cyan">🤖</div>
-        <h3>Atención 24/7 sin esfuerzo</h3>
-        <p>El chatbot responde al instante a cualquier hora, incluyendo fines de semana y feriados. Ningún paciente se queda sin respuesta.</p>
+    <div class="califica-grid">
+      <div class="califica-col yes reveal">
+        <div class="califica-header">✅ Sí encajás si sos</div>
+        <ul class="califica-list yes">
+          <li>Asesor independiente o broker que ya cierra 2–5 propiedades por mes</li>
+          <li>Tenés una zona o desarrollo específico que querés escalar</li>
+          <li>Entendés que una venta paga toda la inversión</li>
+          <li>Buscás un sistema, no una prueba</li>
+          <li>Podés invertir en pauta publicitaria mensual</li>
+        </ul>
       </div>
-      <div class="benefit-card reveal reveal-delay-2">
-        <div class="benefit-icon bi-green">✅</div>
-        <h3>Reducción de ausencias del 30%</h3>
-        <p>Recordatorios automáticos por WhatsApp o el canal preferido del paciente. Confirmación del turno con un clic, sin llamadas de tu equipo.</p>
-      </div>
-      <div class="benefit-card reveal reveal-delay-3">
-        <div class="benefit-icon bi-amber">⚡</div>
-        <h3>Menos carga administrativa</h3>
-        <p>Agendamiento, preguntas frecuentes, obras sociales y precios: todo resuelto automáticamente. Tu recepción se libera para lo que importa.</p>
+      <div class="califica-col no reveal">
+        <div class="califica-header">❌ No es para vos si</div>
+        <ul class="califica-list no">
+          <li>Nunca cerraste una venta y buscás que el marketing lo haga por vos</li>
+          <li>Querés "probar sin riesgo" o necesitás garantía de resultados</li>
+          <li>No tenés presupuesto para invertir en publicidad</li>
+          <li>Buscás likes, seguidores o visibilidad en redes</li>
+          <li>No estás dispuesto a hacer el seguimiento de los leads</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section id="stats" class="section">
+<section id="testimonios" class="section">
   <div class="container">
-    <div class="stats-row">
-      <div class="stat-item reveal">
-        <div class="stat-num cyan" data-count="24">0</div>
-        <div class="stat-label">Horas disponible al día</div>
+    <div class="text-center reveal">
+      <div class="tag green">Resultados reales</div>
+      <h2 style="margin-top:16px">Lo que dicen los asesores que ya tienen el sistema</h2>
+    </div>
+    <div class="testi-grid">
+
+      <article class="testi-card reveal">
+        <div class="testi-badge">+11 exclusivas en 3 meses</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Comencé desde cero en el rubro en CABA, recién llegado de España sin propiedades y sin consultas. En menos de un mes logré captar más de 5 propiedades y consolidar una base sólida de contactos calificados. Hoy me enfoco solo en cerrar.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">CD</div>
+          <div><div class="testi-name">Claudio Duedra</div><div class="testi-role">Asesor Inmobiliario · Buenos Aires</div></div>
+        </div>
+      </article>
+
+      <article class="testi-card reveal">
+        <div class="testi-badge">Primera captación en 15 días</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Llegué desde el mundo de la indumentaria buscando reinventarme. En mis primeros 15 días logré concretar mi primera captación y hoy ya estamos comercializando esa propiedad. Lo hice sin depender de referidos ni conocidos.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">EI</div>
+          <div><div class="testi-name">Eduardo Issa</div><div class="testi-role">Asesor Inmobiliario</div></div>
+        </div>
+      </article>
+
+      <article class="testi-card reveal">
+        <div class="testi-badge">+2 propiedades en 21 días</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Dependía de referidos poco predecibles, hacía llamadas en frío y publicaba en portales sin captación constante. Al comenzar con el sistema, el proceso se facilitó muchísimo y empecé a obtener exclusivas de manera predecible.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DB</div>
+          <div><div class="testi-name">Diego Braun</div><div class="testi-role">Asesor Inmobiliario</div></div>
+        </div>
+      </article>
+
+      <article class="testi-card reveal">
+        <div class="testi-badge">+9 exclusivas en 90 días</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">No lograba captar propiedades nuevas y dependía únicamente de referidos. Implementamos un sistema de atracción basado en contenido, anuncios y automatización. Hoy llevo más de 9 exclusivas con un proceso sólido y predecible.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AL</div>
+          <div><div class="testi-name">Agustín Leira</div><div class="testi-role">Broker Inmobiliario</div></div>
+        </div>
+      </article>
+
+      <article class="testi-card reveal">
+        <div class="testi-badge">+12 propiedades en 90 días</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Dedicaba mucho esfuerzo a redes sociales sin atraer leads calificados. Con estrategias segmentadas y un proceso de ventas optimizado, empecé a recibir dueños realmente interesados y escalé mi captación con mucho menos esfuerzo.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SC</div>
+          <div><div class="testi-name">Silvana Castelani</div><div class="testi-role">Asesora Inmobiliaria</div></div>
+        </div>
+      </article>
+
+      <article class="testi-card reveal">
+        <div class="testi-badge">+2 exclusivas en 12 días</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Publicaba propiedades pero los contactos no estaban listos para avanzar. En los primeros 12 días pasé de no tener consultas a recibir 62 propietarios interesados de forma constante. En esos mismos 12 días, cerré 2 exclusivas.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RG</div>
+          <div><div class="testi-name">Rolando Guerrero</div><div class="testi-role">Asesor Inmobiliario</div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section" style="background:var(--bg2)">
+  <div class="container container-sm">
+    <div class="text-center reveal">
+      <div class="tag">Preguntas frecuentes</div>
+      <h2 style="margin-top:16px">Lo que más nos preguntan antes de empezar</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Los prospectos son potables?<span class="faq-arrow">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Nos encargamos de que los prospectos que lleguen estén filtrados con tus requisitos de presupuesto, urgencia y perfil antes de llegar a tu WhatsApp.</div></div>
       </div>
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-num green">−30%</div>
-        <div class="stat-label">Reducción de no-shows</div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuál es la diferencia entre un lead de portal y uno de nuestro sistema?<span class="faq-arrow">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Un lead de portal es un curioso. Un lead de nuestro sistema es una oportunidad calificada que pasa por un filtro de presupuesto, urgencia y perfil antes de llegar a tu calendario.</div></div>
       </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-num amber">7</div>
-        <div class="stat-label">Días para implementar</div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo tarda en verse el primer resultado?<span class="faq-arrow">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">En la mayoría de los casos, los primeros contactos calificados llegan en menos de 7 días y las primeras captaciones dentro del primer mes. Los resultados medibles se consolidan entre la semana 4 y la 8.</div></div>
       </div>
-      <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-num red">3</div>
-        <div class="stat-label">Cupos disponibles</div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Para quién es perfecto este sistema?<span class="faq-arrow">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Está pensado para agentes, inmobiliarias o desarrolladoras con experiencia que hoy dependen en gran parte de referidos. Si sabés que ese modelo tiene un techo, nuestra solución te permite escalar sin perder calidad ni tiempo.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto necesito invertir en publicidad?<span class="faq-arrow">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Recomendamos una inversión mínima de USD 300 mensuales en pauta para que el sistema tenga suficiente alcance. El presupuesto ideal para escalar rápido es entre USD 500 y USD 800 mensuales.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si necesito más ayuda?<span class="faq-arrow">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Antes de comenzar, analizamos y auditamos tu negocio para entenderlo a fondo. De esa manera podemos evaluar si realmente podemos ayudarte y adaptar la estrategia a tus procesos y objetivos.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Tienen contratos de permanencia?<span class="faq-arrow">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. El servicio es mensual y podés discontinuarlo con 15 días de anticipación. Los mejores resultados se ven a partir del segundo y tercer mes, cuando el sistema ya está optimizado.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASO DE ÉXITO -->
-<section id="caso" class="section">
-  <div class="container">
-    <div class="container-sm">
-      <div class="text-center reveal">
-        <div class="label">Caso de éxito</div>
-        <h2>Cómo un broker inmobiliario vendió <span class="gradient-text">2 propiedades en 1 mes</span> con automatizaciones</h2>
-        <p style="max-width:600px;margin:16px auto 0">
-          Un broker de inmuebles nos contactó porque perdía leads por falta de seguimiento. Implementamos automatizaciones y en 30 días cerró 2 ventas que antes se le escapaban.
-        </p>
-      </div>
-
-      <div class="video-wrap reveal">
-        <div class="video-aspect">
-          <iframe
-            src="https://www.youtube.com/embed/kFanSsbLBN4"
-            title="Caso de éxito ADMiND"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-
-      <div class="caso-stats">
-        <div class="caso-stat reveal reveal-delay-1">
-          <div class="num c">2</div>
-          <p>Propiedades vendidas en 1 mes</p>
-        </div>
-        <div class="caso-stat reveal reveal-delay-2">
-          <div class="num g">30</div>
-          <p>Días para ver resultados</p>
-        </div>
-        <div class="caso-stat reveal reveal-delay-3">
-          <div class="num a">100%</div>
-          <p>Seguimiento automático de leads</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
 <section id="cta-final" class="section">
-  <div class="container">
+  <div class="container container-sm">
     <div class="cta-box reveal">
-      <div class="badge badge-red" style="margin-bottom:16px">
-        <div class="pulse-dot red"></div>
-        Últimos cupos disponibles
-      </div>
-
-      <h2>¿Listo para que tu clínica<br>trabaje sola?</h2>
-
-      <p>
-        Agendá una reunión estratégica de 15 minutos. Analizamos tu situación y te mostramos exactamente cómo ADMiND puede ayudarte — sin compromiso.
-      </p>
-
-      <div class="cta-actions">
-        <button class="btn btn-primary btn-lg" onclick="openBooking()">
-          Agendar mi reunión gratuita →
-        </button>
-      </div>
-
-      <div class="cupos-row">
-        <div class="cupos-spots">
-          <div class="spot"></div>
-          <div class="spot"></div>
-          <div class="spot"></div>
-          <div class="spot taken"></div>
-          <div class="spot taken"></div>
-        </div>
-        <span class="cupos-text">
-          <strong>Solo 3 cupos</strong> disponibles para Mayo
-        </span>
-      </div>
+      <div class="tag"><span class="pulse-dot"></span>Solo 5 plazas este mes</div>
+      <h2>Si tu objetivo es cerrar más propiedades este mes, la sesión de diagnóstico es el primer paso</h2>
+      <p>En 30 minutos analizamos tu situación, te mostramos exactamente cómo funcionaría el sistema para tu negocio y te decimos si tiene sentido avanzar. Sin presión. Sin compromiso.</p>
+      <button class="btn btn-primary btn-lg" onclick="openBooking('final_cta')">Agendar mi sesión de diagnóstico →</button>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="nav-logo">
-          <div class="nav-dot"></div>
-          ADMiND
-        </div>
-        <p>ADMiND automatiza la atención de clínicas médicas y dentales con inteligencia artificial. Más turnos, menos carga, sin contratar nadie.</p>
+        <div class="nav-logo"><span class="nav-dot"></span>Nuvia Marketing</div>
+        <p>Marketing digital especializado para agentes e inmobiliarias. Sistemas de captación, calificación y seguimiento que generan propiedades exclusivas de forma predecible.</p>
       </div>
       <div class="footer-col">
         <h4>Navegación</h4>
         <a href="#problema">El problema</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#caso">Caso de éxito</a>
+        <a href="#sistema">El sistema</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#faq">FAQ</a>
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
-        <a href="#cta-final">Agendar reunión</a>
-        <a href="https://cal.com/nuvia-etittg/meta" target="_blank" rel="noopener">Cal.com</a>
-        <a href="mailto:soporte@admind.lat">soporte@admind.lat</a>
+        <a href="#" onclick="openBooking('footer');return false">Agendar reunión</a>
+        <a href="mailto:felipeiturbe88@gmail.com">felipeiturbe88@gmail.com</a>
         <a href="/privacy">Política de privacidad</a>
         <a href="/terms">Términos de servicio</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 ADMiND. Todos los derechos reservados.</span>
-      <span class="footer-copy">Especialistas en IA para salud</span>
+      <span class="footer-copy">© 2026 Nuvia Marketing. Todos los derechos reservados.</span>
+      <span class="footer-copy">Especialistas en marketing inmobiliario</span>
     </div>
   </div>
 </footer>
 
-<!-- WHATSAPP -->
-<a class="wa-float" href="https://wa.me/1234567890" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+<a class="wa-float" href="https://wa.me/5491123456789" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<div id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <span class="modal-title">Agendar sesión de diagnóstico</span>
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">×</button>
+    </div>
+    <iframe id="booking-iframe" title="Agendar reunión" loading="lazy"></iframe>
+  </div>
+</div>
+
 <script>
-// Booking
-function openBooking(){
-  window.open('https://cal.com/nuvia-etittg/meta','_blank');
+var BOOKING_URL = "https://cal.com/nuvia-etittg/meta?embed=true";
+
+function trackLead(label) {
+  if (typeof fbq === "function" && window.META_PIXEL_EVENTS.leadOnBooking) {
+    fbq("track", "Lead", { content_name: label || "booking" });
+  }
 }
 
-// Navbar scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll',()=>{
-  navbar.classList.toggle('scrolled', window.scrollY > 30);
-});
-
-// Mobile menu
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click',()=>{
-  hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-});
-function closeMobile(){
-  hamburger.classList.remove('open');
-  mobileMenu.classList.remove('open');
-  document.body.style.overflow = '';
+function openBooking(label) {
+  trackLead(label);
+  var overlay = document.getElementById("modal-overlay");
+  var iframe = document.getElementById("booking-iframe");
+  iframe.src = BOOKING_URL;
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
 }
 
-// Scroll reveal
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add('up');
+function closeModal(e) {
+  if (e && e.target !== document.getElementById("modal-overlay")) return;
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.getElementById("booking-iframe").src = "";
+  document.body.style.overflow = "";
+}
+
+function toggleFaq(btn) {
+  var answer = btn.nextElementSibling;
+  var isOpen = btn.classList.contains("open");
+  document.querySelectorAll(".faq-q").forEach(function (q) {
+    q.classList.remove("open");
+    q.nextElementSibling.style.maxHeight = "0";
   });
-},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  if (!isOpen) {
+    btn.classList.add("open");
+    answer.style.maxHeight = answer.scrollHeight + "px";
+  }
+}
+
+var navbar = document.getElementById("navbar");
+window.addEventListener("scroll", function () {
+  navbar.classList.toggle("scrolled", window.scrollY > 30);
+});
+
+var hamburger = document.getElementById("hamburger");
+var mobileMenu = document.getElementById("mobileMenu");
+hamburger.addEventListener("click", function () {
+  hamburger.classList.toggle("open");
+  mobileMenu.classList.toggle("open");
+  document.body.style.overflow = mobileMenu.classList.contains("open") ? "hidden" : "";
+});
+function closeMobile() {
+  hamburger.classList.remove("open");
+  mobileMenu.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+var revealObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) {
+    if (e.isIntersecting) e.target.classList.add("up");
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll(".reveal").forEach(function (el) { revealObserver.observe(el); });
 </script>
 </body>
 </html>
