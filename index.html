@@ -11,7 +11,7 @@
 <meta property="og:image" content="https://nuviamarketing.org/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script id="meta-pixel-config">
 window.META_PIXEL_ID = "";
@@ -19,511 +19,501 @@ window.META_PIXEL_EVENTS = { pageView: true, leadOnBooking: true };
 </script>
 <script>
 (function () {
-  var pixelId = window.META_PIXEL_ID;
-  if (!pixelId || pixelId === "YOUR_PIXEL_ID_HERE") return;
+  var id = window.META_PIXEL_ID;
+  if (!id || id === "YOUR_PIXEL_ID_HERE") return;
   !function (f, b, e, v, n, t, s) {
     if (f.fbq) return;
-    n = f.fbq = function () {
-      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-    };
-    if (!f._fbq) f._fbq = n;
-    n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+    n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
     t = b.createElement(e); t.async = !0; t.src = v;
     s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
   }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-  fbq("init", pixelId);
+  fbq("init", id);
   fbq("track", "PageView");
 })();
 </script>
 
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#ffffff;
-  --bg-soft:#f7f7f5;
-  --text:#1a1a1a;
-  --text-muted:#5c5c5c;
-  --text-light:#888;
-  --accent:#16a34a;
-  --accent-hover:#15803d;
-  --border:#e8e8e8;
-  --video-bg:#0f0f0f;
-  --max:720px;
-  --max-wide:900px;
-}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Montserrat',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-img,video{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.funnel{max-width:var(--max);margin:0 auto;padding:0 20px}
-.funnel-wide{max-width:var(--max-wide);margin:0 auto;padding:0 20px}
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --light: #888888;
+  --line: #e5e5e5;
+  --cta: #22c55e;
+  --cta-hover: #16a34a;
+  --wrap: 680px;
+  --wrap-wide: 820px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+.wrap-wide { max-width: var(--wrap-wide); margin: 0 auto; padding: 0 20px; }
+
+section { border-bottom: 1px solid var(--line); }
 
 /* ── HERO ── */
-.hero{
-  text-align:center;
-  padding:48px 0 56px;
-  border-bottom:1px solid var(--border);
-}
-.eyebrow{
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--text-muted);
-  margin-bottom:28px;
-  line-height:1.5;
-}
-.hero h1{
-  font-size:clamp(28px,6vw,42px);
-  font-weight:800;
-  line-height:1.2;
-  letter-spacing:-.02em;
-  margin-bottom:8px;
-  text-wrap:balance;
-}
-.hero h1 .line{display:block}
-.hero .sub{
-  font-size:clamp(15px,2.5vw,17px);
-  color:var(--text-muted);
-  margin:20px auto 32px;
-  max-width:540px;
-  line-height:1.7;
-}
-.cta-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  background:var(--accent);
-  color:#fff;
-  font-size:16px;
-  font-weight:700;
-  padding:16px 40px;
-  border-radius:6px;
-  transition:background .2s,transform .15s;
-  width:100%;
-  max-width:380px;
-}
-.cta-btn:hover{background:var(--accent-hover);transform:translateY(-1px)}
-.cta-btn:active{transform:translateY(0)}
-.hero-promise{
-  margin-top:36px;
-  padding-top:28px;
-  border-top:1px solid var(--border);
-  font-size:15px;
-  color:var(--text-muted);
-  line-height:1.65;
-  max-width:520px;
-  margin-left:auto;
-  margin-right:auto;
+.hero {
+  text-align: center;
+  padding: 40px 0 48px;
 }
 
-/* ── SECTION BLOCKS ── */
-.block{
-  text-align:center;
-  padding:56px 0;
-  border-bottom:1px solid var(--border);
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
 }
-.block h2{
-  font-size:clamp(24px,5vw,34px);
-  font-weight:800;
-  letter-spacing:-.02em;
-  margin-bottom:16px;
-  text-wrap:balance;
+
+.hero h1 {
+  font-size: clamp(26px, 5.5vw, 38px);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  text-wrap: balance;
 }
-.block p{
-  font-size:16px;
-  color:var(--text-muted);
-  max-width:520px;
-  margin:0 auto 28px;
-  line-height:1.7;
+
+.hero h1 .line { display: block; }
+
+.hero .sub {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 18px auto 28px;
+  max-width: 500px;
+}
+
+.cta {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 15px 28px;
+  background: var(--cta);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cta:hover { background: var(--cta-hover); }
+
+.promise {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+/* ── VIDEO BLOCKS ── */
+.video-block {
+  padding: 36px 0 40px;
+  text-align: center;
+}
+
+.video-block h2 {
+  font-size: clamp(22px, 4.5vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.video-block .lead {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 22px;
+  line-height: 1.65;
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0 auto 20px;
+}
+
+.media video,
+.media iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #000;
+}
+
+.media video { object-fit: contain; }
+
+.yt-facade {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111 center / cover no-repeat;
+  background-image: url("https://img.youtube.com/vi/kFanSsbLBN4/maxresdefault.jpg");
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.yt-play {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yt-play svg {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  margin-left: 4px;
+}
+
+.sound-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 5;
+  padding: 7px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.75);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sound-btn.hidden { display: none; }
+
+/* ── MID CTA BLOCK ── */
+.mid-block {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.mid-block h2 {
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  text-wrap: balance;
+}
+
+.mid-block p {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.65;
 }
 
 /* ── TESTIMONIALS ── */
-.testimonials-header{
-  text-align:center;
-  padding:56px 0 12px;
-}
-.testimonials-header h2{
-  font-size:clamp(26px,5vw,36px);
-  font-weight:800;
-  letter-spacing:-.02em;
+.testimonials-title {
+  text-align: center;
+  padding: 48px 0 8px;
+  font-size: clamp(26px, 5vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
-.testimonial{
-  padding:40px 0 48px;
-  border-bottom:1px solid var(--border);
+.testimonial {
+  padding: 36px 0 44px;
+  border-bottom: 1px solid var(--line);
 }
-.testimonial-preview{
-  font-size:13px;
-  font-weight:600;
-  color:var(--text-light);
-  text-transform:capitalize;
-  margin-bottom:6px;
-  text-align:center;
+
+.t-preview {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--light);
+  text-transform: capitalize;
+  margin-bottom: 4px;
 }
-.testimonial-result{
-  font-size:clamp(17px,3vw,20px);
-  font-weight:700;
-  text-align:center;
-  margin-bottom:20px;
-  line-height:1.4;
-  color:var(--text);
+
+.t-result {
+  text-align: center;
+  font-size: clamp(16px, 3vw, 19px);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 18px;
+  text-wrap: balance;
 }
-.video-wrap{
-  position:relative;
-  background:var(--video-bg);
-  border-radius:8px;
-  overflow:hidden;
-  margin-bottom:28px;
-  aspect-ratio:16/9;
+
+.testimonial h3 {
+  text-align: center;
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 800;
+  margin: 22px 0 14px;
+  letter-spacing: -0.02em;
 }
-.video-wrap video,
-.video-wrap iframe{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border:0;
+
+.story {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
 }
-.video-placeholder{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  background:linear-gradient(145deg,#1a1a1a 0%,#2d2d2d 100%);
-  color:#aaa;
-  font-size:13px;
-  cursor:pointer;
-}
-.play-btn{
-  width:64px;height:64px;
-  border-radius:50%;
-  background:rgba(255,255,255,.15);
-  border:2px solid rgba(255,255,255,.4);
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s,transform .2s;
-}
-.video-wrap:hover .play-btn{background:rgba(255,255,255,.25);transform:scale(1.05)}
-.play-btn svg{width:22px;height:22px;fill:#fff;margin-left:3px}
-.sound-hint{
-  position:absolute;
-  bottom:12px;right:12px;
-  z-index:3;
-  background:rgba(0,0,0,.72);
-  color:#fff;
-  font-size:11px;
-  font-weight:600;
-  padding:8px 14px;
-  border-radius:4px;
-  letter-spacing:.04em;
-  border:none;
-  cursor:pointer;
-  transition:background .2s;
-}
-.sound-hint:hover{background:rgba(0,0,0,.88)}
-.play-overlay{
-  position:absolute;inset:0;z-index:2;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.25);
-  border:none;cursor:pointer;
-  transition:background .2s;
-}
-.play-overlay:hover{background:rgba(0,0,0,.35)}
-.play-overlay.hidden{display:none}
-.sound-hint.hidden{display:none}
-.video-wrap--vsl{margin:0 auto 8px;max-width:var(--max-wide)}
-.vsl-section{padding:32px 0 16px;border-bottom:1px solid var(--border)}
-.testimonial h3{
-  font-size:clamp(22px,4vw,28px);
-  font-weight:800;
-  margin-bottom:16px;
-  text-align:center;
-  letter-spacing:-.02em;
-}
-.testimonial .story{
-  font-size:15px;
-  color:var(--text-muted);
-  line-height:1.8;
-  text-align:left;
-}
-.testimonial .story p{margin-bottom:14px}
-.testimonial .story p:last-child{margin-bottom:0}
+
+.story p + p { margin-top: 12px; }
 
 /* ── FAQ ── */
-.faq-section{
-  padding:56px 0;
-  border-bottom:1px solid var(--border);
-}
-.faq-section h2{
-  font-size:clamp(26px,5vw,36px);
-  font-weight:800;
-  text-align:center;
-  margin-bottom:36px;
-  letter-spacing:-.02em;
-}
-.faq-item{
-  padding:24px 0;
-  border-bottom:1px solid var(--border);
-}
-.faq-item:first-of-type{border-top:1px solid var(--border)}
-.faq-item h4{
-  font-size:17px;
-  font-weight:700;
-  margin-bottom:10px;
-  line-height:1.4;
-}
-.faq-item p{
-  font-size:15px;
-  color:var(--text-muted);
-  line-height:1.75;
+.faq { padding: 48px 0; }
+
+.faq h2 {
+  text-align: center;
+  font-size: clamp(26px, 5vw, 34px);
+  font-weight: 800;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
 }
 
-/* ── FINAL CTA ── */
-.final-cta{
-  padding:56px 0 72px;
-  text-align:center;
+.faq-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-/* ── STICKY CTA BAR (mobile) ── */
-.sticky-cta{
-  display:none;
-  position:fixed;
-  bottom:0;left:0;right:0;
-  z-index:50;
-  padding:12px 16px;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(8px);
-  border-top:1px solid var(--border);
-  box-shadow:0 -4px 20px rgba(0,0,0,.06);
-}
-.sticky-cta .cta-btn{max-width:100%;padding:14px 24px;font-size:15px}
+.faq-item:first-of-type { border-top: 1px solid var(--line); }
 
-/* ── FOOTER MINIMAL ── */
-footer{
-  text-align:center;
-  padding:32px 20px 100px;
-  font-size:12px;
-  color:var(--text-light);
+.faq-item h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
 }
-footer a{color:var(--text-muted);margin:0 8px}
-footer a:hover{color:var(--text)}
 
-@media(min-width:768px){
-  .hero{padding:72px 0 64px}
-  .block{padding:72px 0}
-  .testimonial{padding:48px 0 56px}
-  .sticky-cta{display:none!important}
-  footer{padding-bottom:40px}
+.faq-item p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
 }
-@media(max-width:767px){
-  .sticky-cta{display:block}
+
+/* ── FOOTER + STICKY ── */
+.final { padding: 48px 0 64px; text-align: center; }
+
+footer {
+  text-align: center;
+  padding: 24px 20px 90px;
+  font-size: 12px;
+  color: var(--light);
+}
+
+footer a { color: var(--muted); margin: 0 6px; }
+
+.sticky {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 50;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 767px) {
+  .sticky { display: block; }
+  .sticky .cta { max-width: 100%; }
+}
+
+@media (min-width: 768px) {
+  .hero { padding: 56px 0 52px; }
+  footer { padding-bottom: 32px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero funnel">
-  <p class="eyebrow">Exclusivo para agentes inmobiliarios</p>
-  <h1>
-    <span class="line">Conocé cómo captar y vender</span>
-    <span class="line">de 3 a 9 propiedades</span>
-    <span class="line">en menos de 90 días.</span>
-  </h1>
-  <p class="sub">Sin depender de ZonaProp, recomendaciones o llamadas en frío.</p>
-  <button class="cta-btn" onclick="openBooking('hero')">Agendar reunión</button>
-  <p class="hero-promise">En 72 horas te vamos a entregar el sistema para conseguir propietarios y compradores potables directo en tu WhatsApp</p>
-</section>
-
-<!-- ═══ VSL ═══ -->
-<section class="vsl-section funnel-wide">
-  <div class="video-wrap video-wrap--vsl" data-has-video>
-    <video src="/videos/funnel-vsl.mp4" playsinline preload="metadata" muted loop></video>
-    <button type="button" class="play-overlay" onclick="startVideo(this)" aria-label="Reproducir video">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-    </button>
-    <button type="button" class="sound-hint hidden" onclick="enableSound(this)">Activar sonido</button>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Exclusivo para agentes inmobiliarios</p>
+    <h1>
+      <span class="line">Conocé cómo captar y vender</span>
+      <span class="line">de 3 a 9 propiedades</span>
+      <span class="line">en menos de 90 días.</span>
+    </h1>
+    <p class="sub">Sin depender de ZonaProp, recomendaciones o llamadas en frío.</p>
+    <button class="cta" type="button" onclick="openBooking('hero')">Agendar reunión</button>
+    <p class="promise">En 72 horas te vamos a entregar el sistema para conseguir propietarios y compradores potables directo en tu WhatsApp</p>
   </div>
 </section>
 
-<!-- ═══ VIDEOCALL ═══ -->
-<section class="block funnel">
-  <h2>Agenda tu videollamada</h2>
-  <p>La videollamada es para agentes que quieren ir al siguiente nivel y están listos para avanzar.</p>
-  <button class="cta-btn" onclick="openBooking('videocall')">Agendar reunión</button>
-</section>
-
-<!-- ═══ TESTIMONIOS ═══ -->
-<div class="testimonials-header funnel-wide">
-  <h2>Testimonios</h2>
-</div>
-
-<article class="testimonial funnel-wide" id="t-claudio">
-  <p class="testimonial-preview">Claudio duedra</p>
-  <p class="testimonial-result">Captó 11 propiedades (exclusivas) en 3 meses y logró 5 reservas sin portales</p>
-  <div class="video-wrap" data-has-video>
-    <video src="/videos/testimonio-claudio.mp4" playsinline preload="metadata" muted></video>
-    <button type="button" class="play-overlay" onclick="startVideo(this)" aria-label="Reproducir testimonio de Claudio">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-    </button>
-    <button type="button" class="sound-hint hidden" onclick="enableSound(this)">Activar sonido</button>
-  </div>
-  <h3>Claudio Duedra</h3>
-  <div class="story">
-    <p>Claudio Duedra comenzó desde cero en el rubro en CABA, recién llegado de España sin propiedades y sin un flujo constante de consultas. Su principal dificultad era llegar a personas realmente interesadas en vender su propiedad.</p>
-    <p>Al trabajar con nosotros, implementamos un sistema que le permite atraer potenciales clientes de forma automática, ya filtrados y listos para avanzar.</p>
-    <p>En menos de un mes, Claudio logró captar más de 5 propiedades y consolidar una base sólida de contactos calificados. Hoy puede enfocarse en lo que mejor sabe hacer: cerrar operaciones y seguir creciendo.</p>
-  </div>
-</article>
-
-<article class="testimonial funnel-wide" id="t-eduardo">
-  <p class="testimonial-preview">Eduardo issa</p>
-  <p class="testimonial-result">Captó su primera propiedad desde 0 con nosotros en los primeros 15 días</p>
-  <h3>Eduardo Issa</h3>
-  <div class="story">
-    <p>Eduardo Issa llegó desde el mundo de la indumentaria buscando reinventarse en el rubro inmobiliario. En sus primeros 15 días trabajando con nosotros, logró concretar su primera captación y hoy ya estamos comercializando esa propiedad.</p>
-    <p>Lo más importante: lo hizo sin depender de referidos, contactos ni conocidos, sino aplicando un sistema predecible que lo sorprendió para bien desde el inicio.</p>
-  </div>
-</article>
-
-<article class="testimonial funnel-wide" id="t-diego">
-  <p class="testimonial-preview">Diego braun</p>
-  <p class="testimonial-result">Captó +2 propiedades en 21 días</p>
-  <h3>Diego Braun</h3>
-  <div class="story">
-    <p>Diego se encontraba en una situación complicada: dependía de referidos poco predecibles, hacía llamadas en frío y publicaba en portales, pero no lograba una captación constante de propiedades.</p>
-    <p>Al comenzar a trabajar con nosotros, el proceso de captación se le facilitó muchísimo y pudo empezar a obtener exclusivas de manera predecible. Hoy está muy conforme con los resultados y con el apoyo que recibe para seguir creciendo en el negocio.</p>
-  </div>
-</article>
-
-<article class="testimonial funnel-wide" id="t-agustin">
-  <p class="testimonial-preview">Agustín leira</p>
-  <p class="testimonial-result">Captó +9 propiedades en 90 días</p>
-  <div class="video-wrap" data-has-video>
-    <video src="/videos/testimonio-agustin.mp4" playsinline preload="metadata" muted></video>
-    <button type="button" class="play-overlay" onclick="startVideo(this)" aria-label="Reproducir testimonio de Agustín">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-    </button>
-    <button type="button" class="sound-hint hidden" onclick="enableSound(this)">Activar sonido</button>
-  </div>
-  <h3>Agustín Leira</h3>
-  <div class="story">
-    <p>Agustín enfrentaba un desafío común: no lograba captar propiedades nuevas y dependía únicamente de referidos o conocidos. Además, no contaba con un sistema que le permitiera generar leads de forma constante.</p>
-    <p>Al comenzar a trabajar con nosotros, implementamos un sistema de atracción de propietarios basado en estrategias de contenido, anuncios y automatización en el seguimiento.</p>
-    <p>Gracias a esto, Agustín logró mantener un flujo constante de propiedades en captación, aumentó la cantidad de reuniones con dueños interesados y escaló sus oportunidades de venta. Hoy ya lleva más de 9 exclusivas y sigue creciendo con un proceso sólido y predecible.</p>
-  </div>
-</article>
-
-<article class="testimonial funnel-wide" id="t-silvana">
-  <p class="testimonial-preview">Silvana castelani</p>
-  <p class="testimonial-result">Captó +12 propiedades en 90 días</p>
-  <h3>Silvana Castelani</h3>
-  <div class="story">
-    <p>Silvana dedicaba mucho esfuerzo a sus redes sociales, pero no lograba atraer leads calificados. Su proceso de ventas no estaba claro y las llamadas no se convertían en reuniones efectivas.</p>
-    <p>Al comenzar a trabajar con nosotros, implementamos estrategias de atracción segmentadas, mensajes enfocados específicamente en propietarios y un proceso de ventas optimizado.</p>
-    <p>El resultado fue un cambio total: empezó a recibir dueños de propiedades realmente interesados, aumentó su tasa de cierre en reuniones y logró escalar su captación con mucho menos esfuerzo. Hoy ya lleva más de 12 propiedades captadas y sigue creciendo con un sistema que le da previsibilidad y resultados reales.</p>
-  </div>
-</article>
-
-<article class="testimonial funnel-wide" id="t-rolando">
-  <p class="testimonial-preview">Rolando guerrero</p>
-  <p class="testimonial-result">Captó +2 propiedades en 12 días</p>
-  <h3>Rolando Guerrero</h3>
-  <div class="story">
-    <p>Durante meses estaba en la misma. Publicaba propiedades, hablaba con algunos interesados… pero no pasaba nada. Los contactos eran pocos, y los que llegaban no estaban realmente listos para avanzar. Sentía que hacía todo lo que había que hacer… pero el negocio no se movía.</p>
-    <p>Hasta que cambió la forma en la que estaba captando. En los primeros 12 días empezó a notar la diferencia. Pasó de no tener prácticamente consultas a recibir 62 propietarios interesados de forma constante. Pero lo más importante no fue la cantidad. Fue que esos contactos sí estaban listos para avanzar. En esos mismos 12 días, cerró 2 exclusivas.</p>
-    <p>Hoy no está viendo si "cae algo"… tiene un flujo constante de oportunidades y puede enfocarse en cerrar. No fue suerte. Fue empezar a moverse distinto.</p>
-  </div>
-</article>
-
-<!-- ═══ CTA POST TESTIMONIOS ═══ -->
-<section class="block funnel">
-  <button class="cta-btn" onclick="openBooking('post_testimonials')">Agendar reunión</button>
-</section>
-
-<!-- ═══ FAQ ═══ -->
-<section class="faq-section funnel">
-  <h2>Preguntas Frecuentes</h2>
-  <div class="faq-item">
-    <h4>¿Los prospectos son potables?</h4>
-    <p>La respuesta es: obvio. Nos encargamos de que los prospectos que lleguen estén filtrados con tus requisitos.</p>
-  </div>
-  <div class="faq-item">
-    <h4>¿Qué pasa si necesito más ayuda?</h4>
-    <p>Antes de comenzar, analizamos y auditamos tu negocio para entenderlo a fondo. De esa manera, podemos evaluar si realmente podemos ayudarte y adaptar la estrategia a tus procesos y objetivos.</p>
-  </div>
-  <div class="faq-item">
-    <h4>¿Para quién es perfecto?</h4>
-    <p>Está pensado para agentes, inmobiliarias o desarrolladoras con experiencia que hoy dependen en gran parte de los referidos. Si estás en esa etapa, sabés que hacés bien tu trabajo, pero también que ese modelo tiene un techo. Nuestra solución te permite escalar sin perder calidad ni tiempo.</p>
-  </div>
-  <div class="faq-item">
-    <h4>¿Cuánto tiempo tarda en verse el primer resultado?</h4>
-    <p>En la mayoría de los casos, nuestros clientes ven sus primeros contactos calificados en menos de 7 días y sus primeras ventas o captaciones dentro del primer mes.</p>
+<!-- TU VIDEO YOUTUBE -->
+<section class="video-block">
+  <div class="wrap-wide">
+    <h2>Mirá cómo funciona el sistema</h2>
+    <p class="lead">En este video te explicamos qué hace el sistema y qué resultados podés esperar como agente inmobiliario.</p>
+    <div class="media" id="yt-wrap">
+      <button type="button" class="yt-facade" id="yt-facade" aria-label="Reproducir video en YouTube" onclick="loadYoutube()">
+        <span class="yt-play"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></span>
+      </button>
+    </div>
   </div>
 </section>
 
-<!-- ═══ CTA FINAL ═══ -->
-<section class="final-cta funnel">
-  <button class="cta-btn" onclick="openBooking('final')">Agendar reunión</button>
+<!-- VSL LOCAL -->
+<section class="video-block">
+  <div class="wrap-wide">
+    <div class="media" id="vsl-wrap">
+      <video id="vsl-video" src="/videos/funnel-vsl.mp4" playsinline preload="metadata" muted></video>
+      <button type="button" class="sound-btn" id="vsl-sound" onclick="unmuteVideo('vsl-video', 'vsl-sound')">Activar sonido</button>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOCALL -->
+<section class="mid-block">
+  <div class="wrap">
+    <h2>Agenda tu videollamada</h2>
+    <p>La videollamada es para agentes que quieren ir al siguiente nivel y están listos para avanzar.</p>
+    <button class="cta" type="button" onclick="openBooking('videocall')">Agendar reunión</button>
+  </div>
+</section>
+
+<!-- TESTIMONIOS (solo con video) -->
+<section>
+  <h2 class="testimonials-title wrap-wide">Testimonios</h2>
+
+  <article class="testimonial wrap-wide">
+    <p class="t-preview">Claudio duedra</p>
+    <p class="t-result">Captó 11 propiedades (exclusivas) en 3 meses y logró 5 reservas sin portales</p>
+    <div class="media">
+      <video id="vid-claudio" src="/videos/testimonio-claudio.mp4" playsinline preload="metadata" muted controls></video>
+      <button type="button" class="sound-btn" onclick="unmuteVideo('vid-claudio', this)">Activar sonido</button>
+    </div>
+    <h3>Claudio Duedra</h3>
+    <div class="story">
+      <p>Claudio Duedra comenzó desde cero en el rubro en CABA, recién llegado de España sin propiedades y sin un flujo constante de consultas. Su principal dificultad era llegar a personas realmente interesadas en vender su propiedad.</p>
+      <p>Al trabajar con nosotros, implementamos un sistema que le permite atraer potenciales clientes de forma automática, ya filtrados y listos para avanzar.</p>
+      <p>En menos de un mes, Claudio logró captar más de 5 propiedades y consolidar una base sólida de contactos calificados. Hoy puede enfocarse en lo que mejor sabe hacer: cerrar operaciones y seguir creciendo.</p>
+    </div>
+  </article>
+
+  <article class="testimonial wrap-wide">
+    <p class="t-preview">Agustín leira</p>
+    <p class="t-result">Captó +9 propiedades en 90 días</p>
+    <div class="media">
+      <video id="vid-agustin" src="/videos/testimonio-agustin.mp4" playsinline preload="metadata" muted controls></video>
+      <button type="button" class="sound-btn" onclick="unmuteVideo('vid-agustin', this)">Activar sonido</button>
+    </div>
+    <h3>Agustín Leira</h3>
+    <div class="story">
+      <p>Agustín enfrentaba un desafío común: no lograba captar propiedades nuevas y dependía únicamente de referidos o conocidos. Además, no contaba con un sistema que le permitiera generar leads de forma constante.</p>
+      <p>Al comenzar a trabajar con nosotros, implementamos un sistema de atracción de propietarios basado en estrategias de contenido, anuncios y automatización en el seguimiento.</p>
+      <p>Gracias a esto, Agustín logró mantener un flujo constante de propiedades en captación, aumentó la cantidad de reuniones con dueños interesados y escaló sus oportunidades de venta. Hoy ya lleva más de 9 exclusivas y sigue creciendo con un proceso sólido y predecible.</p>
+    </div>
+  </article>
+</section>
+
+<!-- CTA -->
+<section class="mid-block">
+  <div class="wrap">
+    <button class="cta" type="button" onclick="openBooking('post_testimonials')">Agendar reunión</button>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-item">
+      <h4>¿Los prospectos son potables?</h4>
+      <p>La respuesta es: obvio. Nos encargamos de que los prospectos que lleguen estén filtrados con tus requisitos.</p>
+    </div>
+    <div class="faq-item">
+      <h4>¿Qué pasa si necesito más ayuda?</h4>
+      <p>Antes de comenzar, analizamos y auditamos tu negocio para entenderlo a fondo. De esa manera, podemos evaluar si realmente podemos ayudarte y adaptar la estrategia a tus procesos y objetivos.</p>
+    </div>
+    <div class="faq-item">
+      <h4>¿Para quién es perfecto?</h4>
+      <p>Está pensado para agentes, inmobiliarias o desarrolladoras con experiencia que hoy dependen en gran parte de los referidos. Si estás en esa etapa, sabés que hacés bien tu trabajo, pero también que ese modelo tiene un techo. Nuestra solución te permite escalar sin perder calidad ni tiempo.</p>
+    </div>
+    <div class="faq-item">
+      <h4>¿Cuánto tiempo tarda en verse el primer resultado?</h4>
+      <p>En la mayoría de los casos, nuestros clientes ven sus primeros contactos calificados en menos de 7 días y sus primeras ventas o captaciones dentro del primer mes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <button class="cta" type="button" onclick="openBooking('final')">Agendar reunión</button>
+  </div>
 </section>
 
 <footer>
   <p>© 2026 Nuvia Marketing · Marketing digital para inmobiliarias</p>
-  <p style="margin-top:8px">
+  <p style="margin-top: 8px">
     <a href="/privacy">Privacidad</a>
     <a href="/terms">Términos</a>
     <a href="mailto:felipeiturbe88@gmail.com">Contacto</a>
   </p>
 </footer>
 
-<!-- Sticky CTA mobile -->
-<div class="sticky-cta">
-  <button class="cta-btn" onclick="openBooking('sticky')">Agendar reunión</button>
+<div class="sticky">
+  <button class="cta" type="button" onclick="openBooking('sticky')">Agendar reunión</button>
 </div>
 
 <script>
 var BOOKING_URL = "https://cal.com/nuvia-etittg/meta";
+var YT_EMBED = "https://www.youtube.com/embed/kFanSsbLBN4?autoplay=1&rel=0";
 
-function trackLead(label) {
+function openBooking(label) {
   if (typeof fbq === "function" && window.META_PIXEL_EVENTS.leadOnBooking) {
     fbq("track", "Lead", { content_name: label || "booking" });
   }
-}
-
-function openBooking(label) {
-  trackLead(label);
   window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
 }
 
-function startVideo(btn) {
-  var wrap = btn.closest(".video-wrap");
-  var video = wrap.querySelector("video");
-  if (!video) return;
-  btn.classList.add("hidden");
-  var soundBtn = wrap.querySelector(".sound-hint");
-  if (soundBtn) soundBtn.classList.remove("hidden");
-  video.play().catch(function () {});
+function loadYoutube() {
+  var wrap = document.getElementById("yt-wrap");
+  wrap.innerHTML =
+    '<iframe src="' + YT_EMBED + '" title="Nuvia Marketing - Cómo funciona el sistema" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 }
 
-function enableSound(btn) {
-  var wrap = btn.closest(".video-wrap");
-  var video = wrap.querySelector("video");
+function unmuteVideo(videoId, btn) {
+  var video = document.getElementById(videoId);
   if (!video) return;
   video.muted = false;
   video.play().catch(function () {});
-  btn.classList.add("hidden");
+  if (btn && btn.classList) btn.classList.add("hidden");
 }
+
+document.querySelectorAll("video").forEach(function (video) {
+  video.addEventListener("play", function () {
+    var wrap = video.closest(".media");
+    var btn = wrap ? wrap.querySelector(".sound-btn") : null;
+    if (btn && !video.muted) btn.classList.add("hidden");
+  });
+});
 </script>
 </body>
 </html>
