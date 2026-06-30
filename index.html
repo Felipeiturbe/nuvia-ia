@@ -13,25 +13,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<script id="meta-pixel-config">
-window.META_PIXEL_ID = "";
-window.META_PIXEL_EVENTS = { pageView: true, leadOnBooking: true };
-</script>
+<!-- Meta Pixel Code -->
 <script>
-(function () {
-  var id = window.META_PIXEL_ID;
-  if (!id || id === "YOUR_PIXEL_ID_HERE") return;
-  !function (f, b, e, v, n, t, s) {
-    if (f.fbq) return;
-    n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
-    t = b.createElement(e); t.async = !0; t.src = v;
-    s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-  }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-  fbq("init", id);
-  fbq("track", "PageView");
-})();
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '957040740172392');
+fbq('track', 'PageView');
 </script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=957040740172392&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -464,7 +462,8 @@ h1, h2, h3, h4 {
   margin-top: 8px;
 }
 
-.calendar-wrap iframe {
+.calendar-wrap iframe,
+.calendar-wrap #cal-embed {
   width: 100%;
   height: 680px;
   border: 0;
@@ -524,7 +523,8 @@ footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
 
   .sticky { display: block; }
   .sticky .cta { max-width: 100%; }
-  .calendar-wrap iframe { height: 580px; }
+  .calendar-wrap iframe,
+  .calendar-wrap #cal-embed { height: 580px; }
 }
 
 @media (min-width: 768px) {
@@ -702,13 +702,7 @@ footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
     <h2 class="section-title">Agenda tu videollamada</h2>
     <p class="section-lead">La videollamada es para agentes que quieren ir al siguiente nivel y están listos para avanzar. Solo 5 plazas disponibles este mes.</p>
     <div class="calendar-wrap">
-      <iframe
-        id="cal-embed"
-        src="https://cal.com/nuvia-etittg/meta?embed=true&theme=dark"
-        title="Agendar sesión de diagnóstico"
-        loading="lazy"
-        allow="payment"
-      ></iframe>
+      <div id="cal-embed"></div>
     </div>
   </div>
 </section>
@@ -817,8 +811,14 @@ footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
 var YT_EMBED = "https://www.youtube.com/embed/kFanSsbLBN4?autoplay=1&rel=0";
 
 function trackLead(label) {
-  if (typeof fbq === "function" && window.META_PIXEL_EVENTS.leadOnBooking) {
+  if (typeof fbq === "function") {
     fbq("track", "Lead", { content_name: label || "booking" });
+  }
+}
+
+function trackSchedule() {
+  if (typeof fbq === "function") {
+    fbq("track", "Schedule");
   }
 }
 
@@ -846,6 +846,55 @@ document.querySelectorAll("video").forEach(function (v) {
     if (btn && !v.muted) btn.classList.add("hidden");
   });
 });
+
+(function (C, A, L) {
+  var p = function (a, ar) { a.q.push(ar); };
+  var d = C.document;
+  C.Cal = C.Cal || function () {
+    var cal = C.Cal;
+    var ar = arguments;
+    if (!cal.loaded) {
+      cal.ns = {};
+      cal.q = cal.q || [];
+      d.head.appendChild(d.createElement("script")).src = A;
+      cal.loaded = true;
+    }
+    if (ar[0] === L) {
+      var api = function () { p(api, arguments); };
+      var namespace = ar[1];
+      api.q = api.q || [];
+      if (typeof namespace === "string") {
+        cal.ns[namespace] = cal.ns[namespace] || api;
+        p(cal.ns[namespace], ar);
+        p(cal, ["initNamespace", namespace]);
+      } else {
+        p(cal, ar);
+      }
+      return;
+    }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal("init", { origin: "https://cal.com" });
+
+Cal("inline", {
+  elementOrSelector: "#cal-embed",
+  calLink: "nuvia-etittg/meta",
+  config: { theme: "dark", layout: "month_view" }
+});
+
+Cal("on", {
+  action: "bookingSuccessful",
+  callback: function () { trackSchedule(); }
+});
+
+Cal("on", {
+  action: "bookingSuccessfulV2",
+  callback: function () { trackSchedule(); }
+});
+
+Cal("ui", { theme: "dark", layout: "month_view" });
 </script>
 </body>
 </html>
