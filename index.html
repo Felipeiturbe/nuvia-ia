@@ -219,14 +219,31 @@ button{font-family:inherit;cursor:pointer;border:none}
 .sound-hint{
   position:absolute;
   bottom:12px;right:12px;
-  background:rgba(0,0,0,.65);
+  z-index:3;
+  background:rgba(0,0,0,.72);
   color:#fff;
   font-size:11px;
   font-weight:600;
-  padding:5px 10px;
+  padding:8px 14px;
   border-radius:4px;
   letter-spacing:.04em;
+  border:none;
+  cursor:pointer;
+  transition:background .2s;
 }
+.sound-hint:hover{background:rgba(0,0,0,.88)}
+.play-overlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.25);
+  border:none;cursor:pointer;
+  transition:background .2s;
+}
+.play-overlay:hover{background:rgba(0,0,0,.35)}
+.play-overlay.hidden{display:none}
+.sound-hint.hidden{display:none}
+.video-wrap--vsl{margin:0 auto 8px;max-width:var(--max-wide)}
+.vsl-section{padding:32px 0 16px;border-bottom:1px solid var(--border)}
 .testimonial h3{
   font-size:clamp(22px,4vw,28px);
   font-weight:800;
@@ -329,6 +346,17 @@ footer a:hover{color:var(--text)}
   <p class="hero-promise">En 72 horas te vamos a entregar el sistema para conseguir propietarios y compradores potables directo en tu WhatsApp</p>
 </section>
 
+<!-- ═══ VSL ═══ -->
+<section class="vsl-section funnel-wide">
+  <div class="video-wrap video-wrap--vsl" data-has-video>
+    <video src="/videos/funnel-vsl.mp4" playsinline preload="metadata" muted loop></video>
+    <button type="button" class="play-overlay" onclick="startVideo(this)" aria-label="Reproducir video">
+      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+    </button>
+    <button type="button" class="sound-hint hidden" onclick="enableSound(this)">Activar sonido</button>
+  </div>
+</section>
+
 <!-- ═══ VIDEOCALL ═══ -->
 <section class="block funnel">
   <h2>Agenda tu videollamada</h2>
@@ -344,12 +372,12 @@ footer a:hover{color:var(--text)}
 <article class="testimonial funnel-wide" id="t-claudio">
   <p class="testimonial-preview">Claudio duedra</p>
   <p class="testimonial-result">Captó 11 propiedades (exclusivas) en 3 meses y logró 5 reservas sin portales</p>
-  <div class="video-wrap" data-video="">
-    <div class="video-placeholder" onclick="playVideo(this)">
+  <div class="video-wrap" data-has-video>
+    <video src="/videos/testimonio-claudio.mp4" playsinline preload="metadata" muted></video>
+    <button type="button" class="play-overlay" onclick="startVideo(this)" aria-label="Reproducir testimonio de Claudio">
       <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-      <span>Tocá para reproducir</span>
-    </div>
-    <span class="sound-hint">Activar sonido</span>
+    </button>
+    <button type="button" class="sound-hint hidden" onclick="enableSound(this)">Activar sonido</button>
   </div>
   <h3>Claudio Duedra</h3>
   <div class="story">
@@ -362,13 +390,6 @@ footer a:hover{color:var(--text)}
 <article class="testimonial funnel-wide" id="t-eduardo">
   <p class="testimonial-preview">Eduardo issa</p>
   <p class="testimonial-result">Captó su primera propiedad desde 0 con nosotros en los primeros 15 días</p>
-  <div class="video-wrap" data-video="">
-    <div class="video-placeholder" onclick="playVideo(this)">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-      <span>Tocá para reproducir</span>
-    </div>
-    <span class="sound-hint">Activar sonido</span>
-  </div>
   <h3>Eduardo Issa</h3>
   <div class="story">
     <p>Eduardo Issa llegó desde el mundo de la indumentaria buscando reinventarse en el rubro inmobiliario. En sus primeros 15 días trabajando con nosotros, logró concretar su primera captación y hoy ya estamos comercializando esa propiedad.</p>
@@ -379,13 +400,6 @@ footer a:hover{color:var(--text)}
 <article class="testimonial funnel-wide" id="t-diego">
   <p class="testimonial-preview">Diego braun</p>
   <p class="testimonial-result">Captó +2 propiedades en 21 días</p>
-  <div class="video-wrap" data-video="">
-    <div class="video-placeholder" onclick="playVideo(this)">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-      <span>Tocá para reproducir</span>
-    </div>
-    <span class="sound-hint">Activar sonido</span>
-  </div>
   <h3>Diego Braun</h3>
   <div class="story">
     <p>Diego se encontraba en una situación complicada: dependía de referidos poco predecibles, hacía llamadas en frío y publicaba en portales, pero no lograba una captación constante de propiedades.</p>
@@ -396,12 +410,12 @@ footer a:hover{color:var(--text)}
 <article class="testimonial funnel-wide" id="t-agustin">
   <p class="testimonial-preview">Agustín leira</p>
   <p class="testimonial-result">Captó +9 propiedades en 90 días</p>
-  <div class="video-wrap" data-video="">
-    <div class="video-placeholder" onclick="playVideo(this)">
+  <div class="video-wrap" data-has-video>
+    <video src="/videos/testimonio-agustin.mp4" playsinline preload="metadata" muted></video>
+    <button type="button" class="play-overlay" onclick="startVideo(this)" aria-label="Reproducir testimonio de Agustín">
       <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-      <span>Tocá para reproducir</span>
-    </div>
-    <span class="sound-hint">Activar sonido</span>
+    </button>
+    <button type="button" class="sound-hint hidden" onclick="enableSound(this)">Activar sonido</button>
   </div>
   <h3>Agustín Leira</h3>
   <div class="story">
@@ -414,13 +428,6 @@ footer a:hover{color:var(--text)}
 <article class="testimonial funnel-wide" id="t-silvana">
   <p class="testimonial-preview">Silvana castelani</p>
   <p class="testimonial-result">Captó +12 propiedades en 90 días</p>
-  <div class="video-wrap" data-video="">
-    <div class="video-placeholder" onclick="playVideo(this)">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-      <span>Tocá para reproducir</span>
-    </div>
-    <span class="sound-hint">Activar sonido</span>
-  </div>
   <h3>Silvana Castelani</h3>
   <div class="story">
     <p>Silvana dedicaba mucho esfuerzo a sus redes sociales, pero no lograba atraer leads calificados. Su proceso de ventas no estaba claro y las llamadas no se convertían en reuniones efectivas.</p>
@@ -432,13 +439,6 @@ footer a:hover{color:var(--text)}
 <article class="testimonial funnel-wide" id="t-rolando">
   <p class="testimonial-preview">Rolando guerrero</p>
   <p class="testimonial-result">Captó +2 propiedades en 12 días</p>
-  <div class="video-wrap" data-video="">
-    <div class="video-placeholder" onclick="playVideo(this)">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
-      <span>Tocá para reproducir</span>
-    </div>
-    <span class="sound-hint">Activar sonido</span>
-  </div>
   <h3>Rolando Guerrero</h3>
   <div class="story">
     <p>Durante meses estaba en la misma. Publicaba propiedades, hablaba con algunos interesados… pero no pasaba nada. Los contactos eran pocos, y los que llegaban no estaban realmente listos para avanzar. Sentía que hacía todo lo que había que hacer… pero el negocio no se movía.</p>
@@ -506,17 +506,24 @@ function openBooking(label) {
   window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
 }
 
-function playVideo(el) {
-  var wrap = el.closest(".video-wrap");
-  var src = wrap.getAttribute("data-video");
-  if (!src) return;
-  wrap.innerHTML = '<video src="' + src + '" controls autoplay playsinline style="width:100%;height:100%;object-fit:cover"></video>';
+function startVideo(btn) {
+  var wrap = btn.closest(".video-wrap");
+  var video = wrap.querySelector("video");
+  if (!video) return;
+  btn.classList.add("hidden");
+  var soundBtn = wrap.querySelector(".sound-hint");
+  if (soundBtn) soundBtn.classList.remove("hidden");
+  video.play().catch(function () {});
 }
 
-/*
-  Para agregar videos de testimonios, asigná la URL en cada bloque:
-  <div class="video-wrap" data-video="https://tudominio.com/video-claudio.mp4">
-*/
+function enableSound(btn) {
+  var wrap = btn.closest(".video-wrap");
+  var video = wrap.querySelector("video");
+  if (!video) return;
+  video.muted = false;
+  video.play().catch(function () {});
+  btn.classList.add("hidden");
+}
 </script>
 </body>
 </html>
