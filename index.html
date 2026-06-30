@@ -235,6 +235,13 @@ h1, h2, h3, h4 {
 
 .media video { object-fit: contain; }
 
+.media--portrait {
+  aspect-ratio: 9 / 16;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .yt-facade {
   position: absolute;
   inset: 0;
@@ -531,16 +538,6 @@ footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
   </div>
 </section>
 
-<!-- VSL -->
-<section class="section section-alt">
-  <div class="wrap-wide">
-    <div class="media">
-      <video id="vsl-video" src="/videos/funnel-vsl.mp4" playsinline preload="metadata" muted controls></video>
-      <button type="button" class="sound-btn" onclick="unmuteVideo('vsl-video', this)">Activar sonido</button>
-    </div>
-  </div>
-</section>
-
 <!-- PROBLEMA -->
 <section class="section">
   <div class="wrap">
@@ -670,7 +667,7 @@ footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
   <article class="testimonial wrap-wide">
     <p class="t-preview">Claudio duedra</p>
     <p class="t-result">Captó 11 propiedades (exclusivas) en 3 meses y logró 5 reservas sin portales</p>
-    <div class="media">
+    <div class="media media--portrait">
       <video id="vid-claudio" src="/videos/testimonio-claudio.mp4" playsinline preload="metadata" muted controls></video>
       <button type="button" class="sound-btn" onclick="unmuteVideo('vid-claudio', this)">Activar sonido</button>
     </div>
@@ -704,7 +701,7 @@ footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
   <article class="testimonial wrap-wide">
     <p class="t-preview">Agustín leira</p>
     <p class="t-result">Captó +9 propiedades en 90 días</p>
-    <div class="media">
+    <div class="media media--portrait">
       <video id="vid-agustin" src="/videos/testimonio-agustin.mp4" playsinline preload="metadata" muted controls></video>
       <button type="button" class="sound-btn" onclick="unmuteVideo('vid-agustin', this)">Activar sonido</button>
     </div>
@@ -718,6 +715,10 @@ footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
   <article class="testimonial wrap-wide">
     <p class="t-preview">Silvana castelani</p>
     <p class="t-result">Captó +12 propiedades en 90 días</p>
+    <div class="media media--portrait">
+      <video id="vid-silvana" src="/videos/testimonio-silvana.mp4" playsinline preload="metadata" muted controls></video>
+      <button type="button" class="sound-btn" onclick="unmuteVideo('vid-silvana', this)">Activar sonido</button>
+    </div>
     <h3>Silvana Castelani</h3>
     <div class="story">
       <p>Silvana dedicaba mucho esfuerzo a redes sin atraer leads calificados. Las llamadas no se convertían en reuniones efectivas.</p>
